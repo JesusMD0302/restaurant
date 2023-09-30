@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import Navbar from "@/components/Navbar/Navbar";
 import { Providers } from "./providers";
 
 const roboto = Roboto({
@@ -20,8 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="dark">
-      <body className={roboto.className}>
-        <Providers>{children}</Providers>
+      <body className={`${roboto.className} h-screen`}>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
