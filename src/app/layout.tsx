@@ -1,10 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Barlow } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 import { Providers } from "./providers";
 
-const roboto = Roboto({
+const barlow = Barlow({
   weight: "400",
   subsets: ["latin"],
 });
@@ -21,9 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="dark">
-      <body className={`${roboto.className} h-screen`}>
+      <body className={`${barlow.className} h-screen`}>
         <Providers>
-          <div className="flex">
+          <div className="flex max-w-full">
             <Navbar />
             {children}
           </div>

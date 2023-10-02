@@ -1,10 +1,4 @@
 import Image from "next/image";
-import { Barlow } from "next/font/google";
-
-const barlow = Barlow({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 export default function Order() {
   return (
@@ -17,7 +11,7 @@ export default function Order() {
           className="object-cover"
         />
       </div>
-      <div className={barlow.className}>
+      <div>
         <p className="text-sm font-semibold">Spicy seasoned seafood noodles</p>
         <p className="text-xs font-normal">200 dishes ordered</p>
       </div>
