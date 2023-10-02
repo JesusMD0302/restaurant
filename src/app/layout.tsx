@@ -23,10 +23,7 @@ export default function RootLayout({
     <html lang="es" className="dark">
       <body className={`${barlow.className} h-screen`}>
         <Providers>
-          <div className="flex max-w-full">
-            <Navbar />
-            {children}
-          </div>
+          {children}
         </Providers>
       </body>
     </html>
