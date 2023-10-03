@@ -7,6 +7,7 @@ interface CardSaucerProps {
   salePrice?: string;
   description?: string;
   viewUrl?: string;
+  onClick?: () => void;
  /*  setCartModalOpen: React.Dispatch<React.SetStateAction<boolean>>; */
 }
 
@@ -17,6 +18,7 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
   salePrice,
   description,
   viewUrl,
+  onClick,
  /*  setCartModalOpen */
 }) => {
   /* const openOrderModal = () => {
@@ -24,7 +26,8 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
   }; */
  
   return (
-    <div className="hover:transform hover:scale-105 duration-300  max-w-sm w-auto mx-auto bg-[#1F1D2B] rounded-3xl shadow-xl overflow-hidden">
+    <div className="hover:transform hover:scale-105 duration-300  max-w-sm w-auto mx-auto bg-[#1F1D2B] rounded-3xl shadow-xl overflow-hidden"
+    onClick={onClick}>
       <div
         className="h-[236px]"
         style={{
