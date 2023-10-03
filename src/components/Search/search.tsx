@@ -14,7 +14,7 @@ export default function Search() {
         </div>
 
         {/* Buscador */}
-        <div className="relative mt-1 md:text-right md:col-span-1">
+        <div className="relative mt-1 md:text-right md:col-span-1 md:ml-16">
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
