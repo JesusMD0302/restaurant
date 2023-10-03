@@ -1,7 +1,7 @@
 import CardSaucer from "@/components/CardSaucer/CardSaucer";
 import CardSaucerContainer from "@/components/ContainerCardSaucer/CardSaucerContainer";
-import Search from "@/components/Search/Search";
-import OptionsTabs from "@/components/Tabs/Optionstabs";
+import Search from "@/components/Search/search";
+import OptionsTabs from "@/components/Tabs/optionstabs";
 export default function Index() {
   return (
   
