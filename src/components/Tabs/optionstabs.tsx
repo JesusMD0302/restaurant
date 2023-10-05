@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import {Tabs, Tab, Chip} from "@nextui-org/react";
+import {Tabs, Tab} from "@nextui-org/react";
 
 export default function OptionsTabs() {
  
@@ -11,16 +11,16 @@ export default function OptionsTabs() {
       color="primary" 
       variant="underlined"
       classNames={{
-        tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
+        tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider ",
         cursor: "w-full bg-[#EA9769]",
-        tab: "max-w-fit px-0 h-12",
-        tabContent: "group-data-[selected=true]:text-[#EA9769]"
+        tab: "max-w-fit px-0 h-12 ",
+        tabContent: "group-data-[selected=true]:text-[#EA9769] text-white"
       }}
     >
       <Tab
         key="Platos principales"
         title={
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 ">
             
             <span>Platos principales</span>
            {/*  <Chip size="sm" variant="faded">9</Chip> */}
@@ -61,7 +61,6 @@ export default function OptionsTabs() {
         key="Tacos"
         title={
           <div className="flex items-center space-x-2">
-          
             <span>Tacos</span>
           {/*   <Chip size="sm" variant="faded">1</Chip> */}
           </div>

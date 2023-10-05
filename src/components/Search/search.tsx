@@ -1,7 +1,9 @@
-"use client"
+"use client";
 import { BsCart3 } from "react-icons/bs";
 import { BsPersonCircle } from "react-icons/bs";
 import useDate from "@/hooks/useDate";
+import Link from "next/link";
+import Title from "../Title/Title";
 export default function Search() {
   const [date] = useDate(Date.now());
   return (
@@ -9,12 +11,13 @@ export default function Search() {
       <div className="grid grid-cols-1 md:grid-cols-2 items-center">
         {/* Nombre en la parte superior para pantallas móviles */}
         <div className=" text-center md:text-left md:col-span-1">
-          <h1 className="not-italic text-3xl">Bienvenido Josue!!</h1>
-          <h1 className="text-2x1 mt-2 ">{date}</h1>
+          {/*  <h1 className=" text-3xl">Bienvenido Josue!!</h1>
+          <h1 className="text-2x1 mt-2 ">{date}</h1> */}
+          <Title isFirstTitle title="Jaegar Resto" subtitle={date} />
         </div>
 
         {/* Buscador */}
-        <div className="relative mt-1 md:text-right md:col-span-1 md:ml-16">
+        <div className="relative mt-1 md:text-right md:col-span-1 md:ml-16 flex items-center justify-center md:justify-end">
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
@@ -36,18 +39,22 @@ export default function Search() {
             <input
               type="text"
               id="table-search"
-              className={`w-full md:w-96 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 pl-10 p-2.5 pr-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+              className={`w-80 md:w-96 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 pl-10 p-2.5 pr-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
               placeholder="Search for items"
             />
-            <div className="items-center space-x-2 ml-10 hidden md:flex ">
+            <div className="items-center space-x-2 ml-10 hidden md:flex">
               <BsCart3 className="text-xl cursor-pointer" title="Carrito" />
               {/* <BsPersonCircle className="text-xl cursor-pointer" /> */}
             </div>
-            <div className="items-center space-x-2 ml-10 hidden md:flex">
-              {/* <BsCart3 className="text-xl cursor-pointer" /> */}
-              <BsPersonCircle className="text-xl cursor-pointer" title="Inicio de sesion" />
-            </div>
-            
+            <Link href="/login">
+              <div className="items-center space-x-2 ml-10 hidden md:flex">
+                {/* <BsCart3 className="text-xl cursor-pointer" /> */}
+                <BsPersonCircle
+                  className="text-xl cursor-pointer"
+                  title="Inicio de sesion"
+                />
+              </div>
+            </Link>
           </div>
         </div>
       </div>
