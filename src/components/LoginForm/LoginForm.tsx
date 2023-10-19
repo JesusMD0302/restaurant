@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Link from 'next/link';
 const LoginUser = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,7 +36,7 @@ const LoginUser = () => {
           <h2 className="text-2xl text-center font-bold mb-8">Bienvenido 🌮🇲🇽</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-center text-gray-100 text-sm font-bold mb-">Correo Electronico</label>
+              <label htmlFor="email" className="block text-center text-gray-100 text-sm font-bold mb-2">Correo Electronico</label>
               <input
                 type="email"
                 id="Correo Electronico"
@@ -54,7 +54,7 @@ const LoginUser = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="px-4 py-2 w-full text-center rounded-lg shadow-sm border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
+                className="px-4 py-2 w-full text-center rounded-lg shadow-sm border-gray-300 focus:outline-none focus:ring focus:ring-blue-100"
               />
             </div>
             <div className="flex items-center mb-6">
@@ -62,11 +62,17 @@ const LoginUser = () => {
               <label htmlFor="remember" className="text-sm text-gray-100">Recuérdame</label>
             </div>
             <div className="flex items-center mb-6">
-              <a href="#" className="text-sm text-gray-100 ml-2">Olvidé la contraseña</a>
+            <p className=' text-base  text-gray-100 ml-2'>
+                  ¿No tienes cuenta?{' '}
+                  <Link className='text-red-500' href="/register">
+                    Registrate
+                  </Link>
+                </p>
             </div>
             <button type="submit" className="w-full bg-blue-500 text-white rounded-lg px-4 py-2 font-bold hover:bg-blue-600 transition-colors duration-300">
               Ingresar
             </button>
+            
           </form>
         </div>
       </div>
