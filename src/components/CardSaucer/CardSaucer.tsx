@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Button} from "@nextui-org/react";
 interface CardSaucerProps {
   imageUrl: string;
   title: string;
@@ -45,12 +45,15 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
           <p className="text-lg font-bold text-[#0FB478] ">{salePrice}</p>
         </div>
         <p className="text-white text-sm mt-2 text-center">{description}</p>
-        <a
+        <Button className="block mt-4 w-full px-4 py-2 text-center " color="primary" variant="bordered">
+        AÑADIR AL CARRITO
+      </Button>  
+        {/* <a
           target="_blank"
           className="block mt-4 w-full px-4 py-2 font-medium text-white tracking-wide text-center uppercase transition-colors duration-300 bg-[#EA7C69] rounded-lg hover:bg-[#EA7C69] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80"
         >
           AÑADIR AL CARRITO
-        </a>
+        </a> */}
       </div>
     </div>
   );

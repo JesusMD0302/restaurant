@@ -5,7 +5,7 @@ import {Tabs, Tab} from "@nextui-org/react";
 export default function OptionsTabs() {
  
   return (
-    <div className="pt-5 px-3 flex w-full flex-col">
+    <div className="pt-5 flex w-full flex-col">
     <Tabs 
       aria-label="Options" 
       color="primary" 
@@ -23,7 +23,7 @@ export default function OptionsTabs() {
           <div className="flex items-center space-x-2 ">
             
             <span>Platos principales</span>
-           {/*  <Chip size="sm" variant="faded">9</Chip> */}
+        
           </div>
         }
       />
@@ -33,7 +33,7 @@ export default function OptionsTabs() {
           <div className="flex items-center space-x-2">
          
             <span>Bebidas</span>
-          {/*   <Chip size="sm" variant="faded">3</Chip> */}
+         
           </div>
         }
       />
@@ -43,7 +43,7 @@ export default function OptionsTabs() {
           <div className="flex items-center space-x-2">
          
             <span>Postres</span>
-          {/*   <Chip size="sm" variant="faded">3</Chip> */}
+         
           </div>
         }
       />
@@ -53,7 +53,7 @@ export default function OptionsTabs() {
           <div className="flex items-center space-x-2">
          
             <span>Antojitos</span>
-          {/*   <Chip size="sm" variant="faded">3</Chip> */}
+         
           </div>
         }
       />
@@ -62,7 +62,7 @@ export default function OptionsTabs() {
         title={
           <div className="flex items-center space-x-2">
             <span>Tacos</span>
-          {/*   <Chip size="sm" variant="faded">1</Chip> */}
+         
           </div>
         }
       />

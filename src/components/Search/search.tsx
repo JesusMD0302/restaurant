@@ -7,7 +7,7 @@ import Title from "../Title/Title";
 export default function Search() {
   const [date] = useDate(Date.now());
   return (
-    <div className="pt-4 w-full">
+    <div className="pt-4 w-full ">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center">
         {/* Nombre en la parte superior para pantallas móviles */}
         <div className=" text-center md:text-left md:col-span-1">
