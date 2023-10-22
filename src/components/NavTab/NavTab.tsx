@@ -34,7 +34,7 @@ export default function NavTab({
     );
   }
 
-  if (pathname === href) {
+  if (pathname.startsWith(href)) {
     return (
       <Link href={href}>
         <div className="w-[92px] h-[102px] relative z-10">

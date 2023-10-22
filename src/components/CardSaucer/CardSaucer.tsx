@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "@nextui-org/react";
-interface CardSaucerProps {
+export interface CardSaucerProps {
   imageUrl: string;
   title: string;
   regularPrice?: string;

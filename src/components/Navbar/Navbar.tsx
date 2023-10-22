@@ -27,15 +27,15 @@ export default function Navbar() {
       <div className="w-[104px] h-screen hidden sm:flex sm:flex-col items-end bg-[#1F1D2B] border-">
         <NavTab
           isOnlyIcon
-          href=""
+          href="/"
           icon={<Image src={StoreIcon} alt="store" fill />}
         />
 
-        <NavTab href="/" icon={<BsHouse size={24} />} />
+        <NavTab href="/menu" icon={<BsHouse size={24} />} />
         <NavTab href="/dashboard" icon={<AiOutlineDashboard size={24} />} />
-        <NavTab href="" icon={<CiDiscount1 size={24} />} />
-        <NavTab href="" icon={<CiDiscount1 size={24} />} />
-        <NavTab href="" icon={<CiDiscount1 size={24} />} />
+        <NavTab href="#" icon={<CiDiscount1 size={24} />} />
+        <NavTab href="#" icon={<CiDiscount1 size={24} />} />
+        <NavTab href="#" icon={<CiDiscount1 size={24} />} />
       </div>
       {/* <UINavbar onMenuOpenChange={setIsMenuOpen} className="sm:hidden">
         <NavbarContent>
