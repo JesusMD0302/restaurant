@@ -33,7 +33,7 @@ export default function Navbar() {
 
         <NavTab href="/menu" icon={<BsHouse size={24} />} />
         <NavTab href="/dashboard" icon={<AiOutlineDashboard size={24} />} />
-        <NavTab href="/setting" icon={<CiSettings size={24} />} />
+        <NavTab href="/adddish" icon={<CiSettings size={24} />} />
         <NavTab href="#" icon={<CiDiscount1 size={24} />} />
         <NavTab href="#" icon={<CiDiscount1 size={24} />} />
       </div>

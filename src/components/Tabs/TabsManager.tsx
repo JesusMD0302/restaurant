@@ -28,9 +28,9 @@ export default function TabsManager() {
         }}
       >
         <Tab
-          key="setting"
+          key="adddish"
           title={
-            <Link href="/setting">
+            <Link href="/adddish">
               <div className="flex items-center space-x-2 ">
                 <span>Platos principales</span>
               </div>
@@ -40,7 +40,7 @@ export default function TabsManager() {
         <Tab
           key="addbebidas"
           title={
-            <Link href="/setting/addbebidas">
+            <Link href="/adddish/addbebidas">
               <div className="flex items-center space-x-2">
                 <span>Bebidas</span>
               </div>
@@ -50,7 +50,7 @@ export default function TabsManager() {
         <Tab
           key="addpostres"
           title={
-            <Link href="/setting/addpostres">
+            <Link href="/adddish/addpostres">
               <div className="flex items-center space-x-2">
                 <span>Postres</span>
               </div>
@@ -60,7 +60,7 @@ export default function TabsManager() {
         <Tab
           key="addantojitos"
           title={
-            <Link href="/setting/addantojitos">
+            <Link href="/adddish/addantojitos">
               <div className="flex items-center space-x-2">
                 <span>Antojitos</span>
               </div>
@@ -70,7 +70,7 @@ export default function TabsManager() {
         <Tab
           key="addtacos"
           title={
-            <Link href="/setting/addtacos">
+            <Link href="/adddish/addtacos">
               <div className="flex items-center space-x-2">
                 <span>Tacos</span>
               </div>
