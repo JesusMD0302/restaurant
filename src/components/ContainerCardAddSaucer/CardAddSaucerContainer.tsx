@@ -1,5 +1,5 @@
 "use client";
-import CardSaucer from "@/components/CardSaucer/CardSaucer";
+
 /* import OptionsTabs from "@/components/Tabs/Optionstabs"; */
 import {
   useDisclosure,
@@ -7,6 +7,7 @@ import {
 import React, { useState } from "react";
 import Image from 'next/image'
 import ModalSacuer from "../ModalDescriptionSaucer/ModalSaucer";
+import CardAddSaucer from "../CardAddSaucer/CardAddSaucer";
 interface Card {
   imageUrl: string;
   title: string;
@@ -16,7 +17,7 @@ interface Card {
   viewUrl: string;
 }
 
-export default function CardSaucerContainer() {
+export default function CardAddSaucerContainer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedCard, setSelectedCard] = useState<Card | null>(null);
 
@@ -79,11 +80,11 @@ export default function CardSaucerContainer() {
   };
   return (
     <>
-      <div className="flex flex-col px-4">
+      <div className="flex flex-col ">
         <h1 className="py-5 text-2xl">ELIGE LOS PLATILLOS:</h1>
         <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 ">
           {cardData.map((card, index) => (
-            <CardSaucer
+            <CardAddSaucer
               key={index}
               {...card}
               onClick={() => handleCardClick(card)}
