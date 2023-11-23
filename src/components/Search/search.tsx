@@ -48,17 +48,15 @@ export default function Search() {
               {/* <BsPersonCircle className="text-xl cursor-pointer" /> */}
             </div>
             <div>
-
-            <CustomNavbar></CustomNavbar>
-              <div className="items-center space-x-2 ml-10 hidden md:flex">
-                {/* <BsCart3 className="text-xl cursor-pointer" /> */}
+              <CustomNavbar></CustomNavbar>
+              {/* <div className="items-center space-x-2 ml-10 hidden md:flex">
+                <BsCart3 className="text-xl cursor-pointer" />
                 <BsPersonCircle
                   className="text-xl cursor-pointer"
                   title="Inicio de sesion"
                 />
-              </div>
-              </div>
-            
+              </div> */}
+            </div>
           </div>
         </div>
       </div>
