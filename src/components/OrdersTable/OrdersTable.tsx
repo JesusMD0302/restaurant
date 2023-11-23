@@ -1,3 +1,5 @@
+import useOrders from "@/hooks/useOrders";
+import { Order } from "@/libs/requests";
 import {
   Chip,
   Table,
@@ -9,9 +11,16 @@ import {
   User,
   getKeyValue,
 } from "@nextui-org/react";
-import { Key, useCallback, useMemo } from "react";
+import { Key, useCallback, useEffect, useMemo } from "react";
 
-export default function CustomTable() {
+const COLUMS = [
+  { key: "customer", label: "Customer" },
+  { key: "menu", label: "Menú" },
+  { key: "total", label: "Total Payment" },
+  { key: "status", label: "Status" },
+];
+
+export default function OrdersTable({ orders }: { orders: Order[] }) {
   const classNames = useMemo(
     () => ({
       wrapper: ["min-h-[300px]", "max-w-3xl", "flex-1"],
@@ -42,58 +51,6 @@ export default function CustomTable() {
     }),
     []
   );
-
-  const colums = [
-    { key: "customer", label: "Customer" },
-    { key: "menu", label: "Menú" },
-    { key: "total", label: "Total Payment" },
-    { key: "status", label: "Status" },
-  ];
-
-  const items = [
-    {
-      key: "1",
-      customer: { avatar: "https://i.pravatar.cc/300", name: "Eren Jaeger" },
-      menu: "Spicy seasoned seafood noodles ",
-      total: "125",
-      status: "completed",
-    },
-    {
-      key: "2",
-      customer: { avatar: "https://i.pravatar.cc/300", name: "Reiner Braun" },
-      menu: "Salted Pasta with mushroom sauce",
-      total: "145",
-      status: "preparing",
-    },
-    {
-      key: "3",
-      customer: { avatar: "https://i.pravatar.cc/300", name: "Levi Ackerman" },
-      menu: "Beef dumpling in hot and sour soup",
-      total: "105",
-      status: "pending",
-    },
-    {
-      key: "4",
-      customer: { avatar: "https://i.pravatar.cc/300", name: "Historia Reiss" },
-      menu: "Hot spicy fried rice with omelet",
-      total: "45",
-      status: "completed",
-    },
-    {
-      key: "5",
-      customer: { avatar: "https://i.pravatar.cc/300", name: "Hanji Zoe" },
-      menu: "Hot spicy fried rice with omelet",
-      total: "245",
-      status: "completed",
-    },
-    {
-      key: "6",
-      customer: { avatar: "https://i.pravatar.cc/300", name: "Armin Arlet" },
-      menu: "Hot spicy fried rice with omelet",
-      total: "435",
-      status: "completed",
-    },
-  ];
 
   const renderCell = useCallback((item: any, key: Key) => {
     const cellValue = getKeyValue(item, key);
@@ -131,20 +88,19 @@ export default function CustomTable() {
     <Table
       isCompact
       removeWrapper
-      aria-label="Example table with custom cells, pagination and sorting"
       bottomContentPlacement="outside"
       classNames={classNames}
       topContentPlacement="outside"
     >
-      <TableHeader columns={colums}>
+      <TableHeader columns={COLUMS}>
         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>
 
-      <TableBody emptyContent={"No orders found"} items={items}>
-        {(item) => (
-          <TableRow key={item.key}>
+      <TableBody emptyContent={"No orders found"} items={orders}>
+        {(order) => (
+          <TableRow key={order.key}>
             {(columnKey) => (
-              <TableCell>{renderCell(item, columnKey)}</TableCell>
+              <TableCell>{renderCell(order, columnKey)}</TableCell>
             )}
           </TableRow>
         )}

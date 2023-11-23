@@ -6,9 +6,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex max-w-full">
+    <main className="flex max-w-full overflow-y-auto">
       <Navbar />
       {children}
-    </div>
+    </main>
   );
 }

@@ -81,7 +81,7 @@ export default function CardSaucerContainer() {
     <>
       <div className="flex flex-col ">
         <h1 className="py-5 text-2xl">ELIGE LOS PLATILLOS:</h1>
-        <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 ">
+        <div className="py-4 grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 ">
           {cardData.map((card, index) => (
             <CardSaucer
               key={index}

@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "@/components/Card/Card";
-import CustomTable from "@/components/OrdersTable/OrdersTable";
+import OrdersTable from "@/components/OrdersTable/OrdersTable";
 import Title from "@/components/Title/Title";
 import {
   Button,

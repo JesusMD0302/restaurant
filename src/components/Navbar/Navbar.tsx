@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="w-[104px] h-screen hidden sm:flex sm:flex-col items-end bg-[#1F1D2B] border-">
+      <div className="sticky top-0 w-[104px] h-screen hidden sm:flex sm:flex-col items-end bg-[#1F1D2B] border-none">
         <NavTab
           isOnlyIcon
           href="/"

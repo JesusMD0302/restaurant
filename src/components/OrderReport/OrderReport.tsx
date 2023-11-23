@@ -1,6 +1,7 @@
 import Card from "@/components/Card/Card";
-import CustomTable from "@/components/OrdersTable/OrdersTable";
+import OrdersTable from "@/components/OrdersTable/OrdersTable";
 import Title from "@/components/Title/Title";
+import useOrders from "@/hooks/useOrders";
 import {
   Button,
   CardBody,
@@ -11,10 +12,13 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { BsSliders } from "react-icons/bs";
+import OrdersTableSkeleton from "../OrdersTableSkeleton/OrdersTableSkeleton";
 
 export default function OrderReport() {
+  const { orders, errors, loading, status } = useOrders();
+
   return (
-    <Card className="flex-1 max-h-[400px] overflow-visible">
+    <Card className="flex-1 max-h-[270px] overflow-visible">
       <CardHeader className="p-4 flex justify-between">
         <Title title="Order Report" titleSize={20} />
         <Dropdown>
@@ -28,9 +32,16 @@ export default function OrderReport() {
           </DropdownMenu>
         </Dropdown>
       </CardHeader>
-      <CardBody className="p-0">
-        <CustomTable />
-      </CardBody>
+        {loading || orders === null && (
+        <CardBody className="p-0">
+          <OrdersTableSkeleton />
+        </CardBody>
+      )}
+      {!loading && orders !== null && (
+        <CardBody className="p-0">
+          <OrdersTable orders={orders} />
+        </CardBody>
+      )}
     </Card>
   );
 }

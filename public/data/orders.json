@@ -1,0 +1,59 @@
+[
+  {
+    "key": 1,
+    "customer": {
+      "avatar": "https://i.pravatar.cc/300",
+      "name": "Eren Jaeger"
+    },
+    "menu": "Spicy seasoned seafood noodles ",
+    "total": 125,
+    "status": "completed"
+  },
+  {
+    "key": 2,
+    "customer": {
+      "avatar": "https://i.pravatar.cc/300",
+      "name": "Reiner Braun"
+    },
+    "menu": "Salted Pasta with mushroom sauce",
+    "total": 145,
+    "status": "preparing"
+  },
+  {
+    "key": 3,
+    "customer": {
+      "avatar": "https://i.pravatar.cc/300",
+      "name": "Levi Ackerman"
+    },
+    "menu": "Beef dumpling in hot and sour soup",
+    "total": 105,
+    "status": "pending"
+  },
+  {
+    "key": 4,
+    "customer": {
+      "avatar": "https://i.pravatar.cc/300",
+      "name": "Historia Reiss"
+    },
+    "menu": "Hot spicy fried rice with omelet",
+    "total": 45,
+    "status": "completed"
+  },
+  {
+    "key": 5,
+    "customer": { "avatar": "https://i.pravatar.cc/300", "name": "Hanji Zoe" },
+    "menu": "Hot spicy fried rice with omelet",
+    "total": 245,
+    "status": "completed"
+  },
+  {
+    "key": 6,
+    "customer": {
+      "avatar": "https://i.pravatar.cc/300",
+      "name": "Armin Arlet"
+    },
+    "menu": "Hot spicy fried rice with omelet",
+    "total": 435,
+    "status": "completed"
+  }
+]
