@@ -6,7 +6,7 @@ import Image from "next/image";
 import StoreIcon from "@/../public/images/store-icon.svg";
 import { BsHouse } from "react-icons/bs";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { CiDiscount1 } from "react-icons/ci";
+import { CiDiscount1 ,CiSettings } from "react-icons/ci";
 import {
   Button,
   Link,
@@ -34,7 +34,7 @@ export default function Navbar() {
 
         <NavTab href="/menu" icon={<BsHouse size={24} />} />
         <NavTab href="/dashboard" icon={<AiOutlineDashboard size={24} />} />
-        <NavTab href="#" icon={<CiDiscount1 size={24} />} />
+        <NavTab href="/adddish" icon={<CiSettings size={24} />} />
         <NavTab href="#" icon={<CiDiscount1 size={24} />} />
         <NavTab href="#" icon={<CiDiscount1 size={24} />} />
       </div>

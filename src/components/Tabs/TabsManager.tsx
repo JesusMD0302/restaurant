@@ -4,7 +4,7 @@ import { Tabs, Tab } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-export default function OptionsTabs() {
+export default function TabsManager() {
   const pathname = usePathname();
   const [tabActive, setTabActive] = useState("");
 
@@ -13,7 +13,7 @@ export default function OptionsTabs() {
   }, [pathname]);
 
   return (
-    <div className="pt-4 flex w-full flex-col">
+    <div className="px-4 flex w-full flex-col">
       <Tabs
         aria-label="Options"
         color="primary"
@@ -28,9 +28,9 @@ export default function OptionsTabs() {
         }}
       >
         <Tab
-          key="menu"
+          key="adddish"
           title={
-            <Link href="/menu">
+            <Link href="/adddish">
               <div className="flex items-center space-x-2 ">
                 <span>Platos principales</span>
               </div>
@@ -38,9 +38,9 @@ export default function OptionsTabs() {
           }
         />
         <Tab
-          key="bebidas"
+          key="addbebidas"
           title={
-            <Link href="/menu/bebidas">
+            <Link href="/adddish/addbebidas">
               <div className="flex items-center space-x-2">
                 <span>Bebidas</span>
               </div>
@@ -48,9 +48,9 @@ export default function OptionsTabs() {
           }
         />
         <Tab
-          key="postres"
+          key="addpostres"
           title={
-            <Link href="/menu/postres">
+            <Link href="/adddish/addpostres">
               <div className="flex items-center space-x-2">
                 <span>Postres</span>
               </div>
@@ -58,9 +58,9 @@ export default function OptionsTabs() {
           }
         />
         <Tab
-          key="antojitos"
+          key="addantojitos"
           title={
-            <Link href="/menu/antojitos">
+            <Link href="/adddish/addantojitos">
               <div className="flex items-center space-x-2">
                 <span>Antojitos</span>
               </div>
@@ -68,9 +68,9 @@ export default function OptionsTabs() {
           }
         />
         <Tab
-          key="tacos"
+          key="addtacos"
           title={
-            <Link href="/menu/tacos">
+            <Link href="/adddish/addtacos">
               <div className="flex items-center space-x-2">
                 <span>Tacos</span>
               </div>
