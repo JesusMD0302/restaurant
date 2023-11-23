@@ -4,10 +4,11 @@ import { BsPersonCircle } from "react-icons/bs";
 import useDate from "@/hooks/useDate";
 import Link from "next/link";
 import Title from "../Title/Title";
+import CustomNavbar from "@/AuthContext/Var";
 export default function Search() {
   const [date] = useDate(Date.now());
   return (
-    <div className="pt-4 w-full ">
+    <div className="pt-4 w-full  ">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center">
         {/* Nombre en la parte superior para pantallas móviles */}
         <div className=" text-center md:text-left md:col-span-1">
@@ -46,7 +47,9 @@ export default function Search() {
               <BsCart3 className="text-xl cursor-pointer" title="Carrito" />
               {/* <BsPersonCircle className="text-xl cursor-pointer" /> */}
             </div>
-            <Link href="/login">
+            <div>
+
+            <CustomNavbar></CustomNavbar>
               <div className="items-center space-x-2 ml-10 hidden md:flex">
                 {/* <BsCart3 className="text-xl cursor-pointer" /> */}
                 <BsPersonCircle
@@ -54,7 +57,8 @@ export default function Search() {
                   title="Inicio de sesion"
                 />
               </div>
-            </Link>
+              </div>
+            
           </div>
         </div>
       </div>

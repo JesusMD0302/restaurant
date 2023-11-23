@@ -11,7 +11,7 @@ const LoginUser = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5285/api/LoginCustomer/SignIn', {
+      const response = await axios.post('http://localhost:5285/api/Login/SignIn', {
         UserName,
         Password,
       });
@@ -20,7 +20,7 @@ const LoginUser = () => {
         const data = response.data;
         localStorage.setItem('token', data.token);
         console.log('Logged in successfully');
-        router.push('/menu');
+        router.push('/dashboard');
       } else {
         console.log('Failed to log in');
       }
@@ -34,7 +34,7 @@ const LoginUser = () => {
       <div className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundColor: '' }}>
         <div className="flex justify-center items-center w-full">
           <div className="bg-gray-900 rounded-lg p-10 shadow-xl w-full max-w-md">
-            <h2 className="text-2xl text-center font-bold mb-8">Bienvenido 🌮🇲🇽</h2>
+            <h2 className="text-2xl text-center font-bold mb-8">Bienvenido Administrador</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="UserName" className="block text-center text-gray-100 text-sm font-bold mb-2">Nombre de Usuario</label>
@@ -64,15 +64,9 @@ const LoginUser = () => {
               </div>
               <div className="flex items-center mb-6">
                 <p className='text-base text-gray-100 ml-2 text-center'>
-                  ¿No tienes cuenta?{' '}
-                  <Link href="/register" className='text-red-500'>
-                    Regístrate
-                  </Link>
-                </p>
-                <p className='text-base text-gray-100 ml-2 text-center'>
-                  ¿Eres Administrador?{' '}
-                  <Link href="/loginAdmin" className='text-red-500'>
-                    Entrar
+                  volver a{' '}
+                  <Link href="/menu" className='text-red-500'>
+                    inicio
                   </Link>
                 </p>
               </div>
