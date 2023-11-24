@@ -3,15 +3,18 @@ import React from "react";
 import { Card, CardFooter, Image, Button, CardBody } from "@nextui-org/react";
 import { BsDot, BsPlus } from "react-icons/bs";
 import { LuPencilLine } from "react-icons/lu";
+import ModalAddFood from "@/components/ModalAddFood/ModalAddFood";
 export default function Home() {
   return (
     <div className="pt-8 flex items-start">
-      <Card shadow="sm" isPressable className="h-[325px] w-[225px] border-dotted border-2 bg-transparent shadow-none border-[#EA7C69] mx-4">
+      <ModalAddFood/>
+     {/*  <Card shadow="sm" isPressable className="h-[325px] w-[225px] border-dotted border-2 bg-transparent shadow-none border-[#EA7C69] mx-4">
         <CardBody className="flex items-center h-full justify-center overflow-visible p-0 ">
           <BsPlus className="text-[#EA7C69] text-3xl"  />
           <span className="font-medium text-[#EA7C69] mt-2">Add new dish</span>
         </CardBody>
-      </Card>
+      </Card> */}
+
       <Card isFooterBlurred radius="lg" className="border-none bg-transparent">
         <CardBody>
           <Image
