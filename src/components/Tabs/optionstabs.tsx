@@ -47,7 +47,7 @@ export default function OptionsTabs() {
             </Link>
           }
         />
-        <Tab
+       {/*  <Tab
           key="postres"
           title={
             <Link href="/menu/postres">
@@ -76,7 +76,7 @@ export default function OptionsTabs() {
               </div>
             </Link>
           }
-        />
+        /> */}
       </Tabs>
     </div>
   );
