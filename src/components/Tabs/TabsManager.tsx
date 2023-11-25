@@ -47,7 +47,7 @@ export default function TabsManager() {
             </Link>
           }
         />
-        <Tab
+      {/*   <Tab
           key="addpostres"
           title={
             <Link href="/adddish/addpostres">
@@ -76,7 +76,7 @@ export default function TabsManager() {
               </div>
             </Link>
           }
-        />
+        /> */}
       </Tabs>
     </div>
   );

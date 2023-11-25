@@ -1,9 +1,6 @@
 "use client";
 import CardSaucer from "@/components/CardSaucer/CardSaucer";
-/* import OptionsTabs from "@/components/Tabs/Optionstabs"; */
-import { useDisclosure } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import ModalSacuer from "../ModalDescriptionSaucer/ModalSaucer";
 import axios from "axios";
 interface Card {
@@ -69,7 +66,7 @@ export default function CardSaucerContainer() {
           isOpen={isOpen}
           onClose={handleModalClose}
           selectedCard={selectedCard}
-          productId={productId} // pasa el productId aquí
+          productId={productId} 
         />
       )}
     </>
