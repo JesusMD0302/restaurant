@@ -30,9 +30,7 @@ export default function HeaderManager() {
           </DropdownMenu>
         </Dropdown>
       </CardHeader>
-      {/*   <CardBody className="p-0">
-        <CustomTable />
-      </CardBody> */}
+      
     </Card>
   );
 }

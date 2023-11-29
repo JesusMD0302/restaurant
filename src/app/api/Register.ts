@@ -12,7 +12,7 @@ interface FormData {
   CellPhone: string;
   CreatedAtBranchStoreId: number;
   CustomerTypeId: number;
-  Gender: number;
+  Gender: string;
   BirthDate: string;
   BranchStoreIds: string[];
 

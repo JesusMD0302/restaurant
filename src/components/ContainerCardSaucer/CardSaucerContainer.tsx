@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ModalSacuer from "../ModalDescriptionSaucer/ModalSaucer";
 import axios from "axios";
+import { useCart } from "../CartContext/CartContext";
 interface Card {
   imageUrl: "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6";
   Price: number;
@@ -22,6 +23,7 @@ export default function CardSaucerContainer() {
   const [productId, setProductId] = useState<number | null>(null);
   /*   const { isOpen, onOpen, onClose } = useDisclosure(); */
   const [selectedCard, setSelectedCard] = useState<Card | null>(null);
+  const { addToCart } = useCart();
   const [data, setData] = useState<Data | null>(null);
 
   useEffect(() => {
@@ -40,6 +42,11 @@ export default function CardSaucerContainer() {
     fetchData();
   }, []);
   const handleCardClick = (card: Card) => {
+    addToCart({
+      ...card,
+      imageUrl: "https://www.conasi.eu/blog/wp-content/uploads/2014/07/zumo-de-sand%C3%ADa-1.jpg",
+      
+    })
     setSelectedCard(card);
     setProductId(card.Id); // establece el ID del producto aquí
     setIsOpen(true); // Abre el modal

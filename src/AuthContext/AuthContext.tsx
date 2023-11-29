@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 function CustomNavbar() {
-  const [UserName, setUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
 
@@ -12,7 +12,7 @@ function CustomNavbar() {
       setLoggedIn(true);
 
       const payload = JSON.parse(atob(token?.split(".")[1] || "") || "{}");
-      setUserName(payload.UserName);
+      setUserName(payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
     } else {
       setLoggedIn(false);
     }
@@ -31,13 +31,11 @@ function CustomNavbar() {
   return (
     <div className="container mx-auto">
       <div className="flex items-center justify-between p-4">
-        <div className="flex items-center space-x-4">
+        <div className=" items-center space-x-4">
           {loggedIn ? (
             <>
-              <p style={{}} className="text-white">
-                {UserName}
-              </p>
-              <button className="text-white ml-4" onClick={handleLogout}>
+              
+              <button className="text-white ml-4 text-center" onClick={handleLogout}>
                 Cerrar Sesión
               </button>
             </>

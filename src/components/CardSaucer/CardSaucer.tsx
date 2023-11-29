@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {Button} from "@nextui-org/react";
 import axios from "axios";
+import { useCart } from "../CartContext/CartContext";
 
 export interface CardSaucerProps {
   imageUrl: string;
@@ -23,6 +24,10 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
   onClick,
   /*  setCartModalOpen */
 }) => {
+  const handleButtonClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Evita que el clic se propague al contenedor padre
+    onClick && onClick();
+  };
   return (
     <div className="hover:transform hover:scale-105 duration-300  max-w-sm w-auto mx-auto bg-[#1F1D2B] rounded-3xl shadow-xl overflow-hidden">
       <div
@@ -36,15 +41,23 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
       ></div>
       <div className="p-4 sm:p-6 justify-center">
         <p className="font-bold text-white text-lg leading-7 mb-1 text-center">
-         Platillo: {Name}
+          {Name}
         </p>
         <div className="flex justify-center">
           <p className="text-lg font-bold text-[#0FB478] ">Precio: $ {Price}</p>
         </div>
         <p className="text-white text-sm mt-2 text-center">Descripcion:{Description}</p>
-        <Button className="block mt-4 w-full px-4 py-2 text-center " color="primary" variant="bordered">
-        AÑADIR AL CARRITO
-      </Button>  
+        <div>
+        
+        <Button
+          className="block mt-4 w-full px-4 py-2 text-center "
+          color="primary"
+          variant="bordered"
+          onClick={handleButtonClick} // Usa la nueva función de clic del botón
+        >
+          AÑADIR AL CARRITO
+        </Button>  
+      </div>
       
       </div>
     </div>

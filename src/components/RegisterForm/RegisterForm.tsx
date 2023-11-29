@@ -14,7 +14,7 @@ interface FormData {
     CellPhone: string;
     CreatedAtBranchStoreId: number;
     CustomerTypeId: number;
-    Gender: number;
+    Gender: string;
     BirthDate: string;
     BranchStoreIds: string[];
 
@@ -31,21 +31,21 @@ const Registers: React.FC = () => {
   Email: '',
   Phone: '',
   CellPhone: '',
-  CreatedAtBranchStoreId: 0,
-  CustomerTypeId: 0,
-  Gender: 0,
+  CreatedAtBranchStoreId: 1,
+  CustomerTypeId: 1,
+  Gender: '',
   BirthDate: '',
-  BranchStoreIds: [],
+  BranchStoreIds: ["1"],
    
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'BranchStoreIds') {
-        setFormData({ ...formData, [e.target.name]: [e.target.value] });
+      setFormData({ ...formData, [e.target.name]: [e.target.value] });
     } else {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+      setFormData({ ...formData, [e.target.name]: e.target.value.toString() });
     }
-};
+  };
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -141,40 +141,23 @@ const Registers: React.FC = () => {
   />
 </div>
 
-<div className="mb-6">
-  <input
-    type="number"
-    name="CreatedAtBranchStoreId"
-    value={formData.CreatedAtBranchStoreId}
-    onChange={handleChange}
-    className="w-full h-12 bg-transparent border-b-2 border-white text-white focus:outline-none rounded-lg"
-    placeholder="Created At Branch Store Id"
-    required
-  />
-</div>
+
+
+
 
 <div className="mb-6">
-  <input
-    type="number"
-    name="CustomerTypeId"
-    value={formData.CustomerTypeId}
-    onChange={handleChange}
-    className="w-full h-12 bg-transparent border-b-2 border-white text-white focus:outline-none rounded-lg"
-    placeholder="Customer Type Id"
-    required
-  />
-</div>
-
-<div className="mb-6">
-  <input
-    type="number"
+  <label className="text-white">Gender:</label>
+  <select
     name="Gender"
     value={formData.Gender}
     onChange={handleChange}
     className="w-full h-12 bg-transparent border-b-2 border-white text-white focus:outline-none rounded-lg"
-    placeholder="Gender"
     required
-  />
+  >
+    <option value="" disabled>Select Gender</option>
+    <option  value="1">Hombre</option>
+    <option value="2">Mujer</option>
+  </select>
 </div>
 
 <div className="mb-6">
@@ -189,16 +172,7 @@ const Registers: React.FC = () => {
   />
 </div>
 
-<div className="mb-6">
-  <input
-    type="string"
-    name="BranchStoreIds"
-    value={formData.BranchStoreIds}
-    onChange={handleChange}
-    className="w-full h-12 bg-transparent border-b-2 border-white text-white focus:outline-none rounded-lg"
-    placeholder="Branch Store Ids"
-  />
-</div>
+
             <button
               type="submit"
               className="w-full bg-blue-500 text-white rounded-lg px-4 py-2 font-bold hover:bg-blue-600 transition-colors duration-300"
