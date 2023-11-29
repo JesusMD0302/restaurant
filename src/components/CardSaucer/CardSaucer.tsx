@@ -43,7 +43,7 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
           <h4 className="font-bold text-large">{Description}</h4>
         </CardBody>
         <CardFooter >
-          <Button className="text-center  w-full" color="primary" variant="shadow">
+          <Button className="text-center  w-full" color="primary" variant="shadow" onClick={handleButtonClick}>
             Añadir al carrito
           </Button>
         </CardFooter>

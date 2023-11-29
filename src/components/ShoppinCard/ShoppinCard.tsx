@@ -13,7 +13,7 @@ const ShoppingCart: React.FC = () => {
   };
 
   return (
-    <div className=" p-6 rounded-md shadow-md">
+    <div className="p-4 max-w-md mx-auto bg-black rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-4">Carrito de Compras</h2>
       {cartItems.length === 0 ? (
         <p className="italic text-gray-600">El carrito está vacío</p>
@@ -40,9 +40,9 @@ const ShoppingCart: React.FC = () => {
                       className="h-6 w-6"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M6 18L18 6M6 6l12 12"
                       />
                     </svg>
