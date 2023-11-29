@@ -1,9 +1,9 @@
-"use client";
+'use client'
 import React, { useState } from "react";
 import { Card, CardFooter, Image, Button, CardBody } from "@nextui-org/react";
-import ModalUpdateFood from "../ModalUpdateFood/ModalUpdateFood";
-import axios from "axios";
 import { LuPencilLine, LuTrash } from "react-icons/lu";
+import ModalUpdateDrink from "../ModalUpdateDrink/ModalUpdateDrink";
+import axios from "axios";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
 export interface CardSaucerProps {
   imageUrl: string;
@@ -17,7 +17,8 @@ export interface CardSaucerProps {
   /*  setCartModalOpen: React.Dispatch<React.SetStateAction<boolean>>; */
 }
 
-const CardUpdateSaucer: React.FC<CardSaucerProps> = ({
+const CardUpdateDrink: React.FC<CardSaucerProps> = ({
+  
   imageUrl,
   Price,
   Id,
@@ -25,11 +26,11 @@ const CardUpdateSaucer: React.FC<CardSaucerProps> = ({
   Description,
   Status,
   onClick,
-  onEdit,
+  onEdit, 
   /*  setCartModalOpen */
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false); 
   const handleEditClick = () => {
     setIsModalOpen(true);
   };
@@ -47,7 +48,7 @@ const CardUpdateSaucer: React.FC<CardSaucerProps> = ({
       Authorization: `Bearer ${token}`,
     };
     try {
-      await axios.delete(`http://localhost:5285/api/Food/${Id}`, { headers });
+      await axios.delete(`http://localhost:5285/api/Drink/${Id}`, { headers });
     } catch (error) {
       console.error(`Error al eliminar la bebida: ${error}`);
     } finally {
@@ -60,22 +61,19 @@ const CardUpdateSaucer: React.FC<CardSaucerProps> = ({
   };
 
   return (
+
     <Card isFooterBlurred radius="lg" className="border-none bg-transparent">
       <CardBody>
         <Image
           alt="Woman listing to music"
           className="object-cover"
           height={200}
-          src="https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6"
+          src="https://www.conasi.eu/blog/wp-content/uploads/2014/07/zumo-de-sand%C3%ADa-1.jpg"
           width={200}
         />
-        <h4 className="font-bold text-large text-center"> {Name}</h4>
-        <h4 className="font-bold text-large text-green-500 text-center">
-          $ {Price}
-        </h4>
-        <h4 className="font-bold text-large text-[#949494] text-center">
-          {Description} {Id}
-        </h4>
+         <h4 className="font-bold text-large text-center"> {Name}</h4>
+          <h4 className="font-bold text-large text-green-500 text-center">$ {Price}</h4>
+          <h4 className="font-bold text-large text-[#949494] text-center">{Description}</h4>
       </CardBody>
       <CardFooter className="p-0 w-full ">
         <div className="w-full flex">
@@ -88,7 +86,7 @@ const CardUpdateSaucer: React.FC<CardSaucerProps> = ({
             onClick={handleEditClick}
           >
             <LuPencilLine />
-            Editar Comida
+            Editar Bebida
           </Button>
           <div className="w-1/4 bg-[#fa151550] p-2">
             <LuTrash
@@ -98,24 +96,17 @@ const CardUpdateSaucer: React.FC<CardSaucerProps> = ({
           </div>
         </div>
       </CardFooter>
-
-      {isModalOpen && (
-        <ModalUpdateFood
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          productId={Id}
-        />
-      )}
+      {isModalOpen && <ModalUpdateDrink isOpen={isModalOpen} onClose={handleCloseModal} productId={Id}   />}
       {isConfirmModalOpen && (
         <ConfirmModal
-          isOpen={isConfirmModalOpen}
-          onConfirm={handleConfirmDelete}
-          onCancel={handleCancelDelete}
-          productId={Id}
+        isOpen={isConfirmModalOpen}
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+        productId={Id}
         />
       )}
     </Card>
   );
 };
 
-export default CardUpdateSaucer;
+export default CardUpdateDrink;
