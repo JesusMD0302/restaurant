@@ -15,7 +15,7 @@ const ShoppingCart: React.FC = () => {
   return (
     <div className="p-4 max-w-md m-9 mx-auto bg-black rounded-md shadow-md">
       <div className="flex items-center mb-4">
-        <Link  className="text-blue-500" href="/">
+        <Link  className="text-white" href="/">
         
             {/* SVG de flecha izquierda */}
             <svg

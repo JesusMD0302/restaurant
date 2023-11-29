@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { register } from '@/app/api/Register';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 interface FormData {
     UserName: string;
@@ -50,15 +51,30 @@ const Registers: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     try {
       const response = await register(formData);
-      router.push('/login');
-      console.log(response.data);
+  
+      // Verificar si el registro fue exitoso (puedes ajustar esto según la respuesta del servidor)
+      if (response.status === 200) {
+        // Mostrar la alerta de registro exitoso
+        Swal.fire({
+          icon: 'success',
+          title: '¡Registro exitoso!',
+          text: 'Tu cuenta ha sido creada correctamente. Ahora puedes iniciar sesión.',
+        });
+  
+        // Redirigir al usuario a la página de inicio de sesión
+        router.push('/login');
+      } else {
+        // Manejar otros casos de respuesta del servidor si es necesario
+        console.log(response.data);
+      }
     } catch (error) {
       console.error(error);
     }
   };
+  
 
   return (
     <>
