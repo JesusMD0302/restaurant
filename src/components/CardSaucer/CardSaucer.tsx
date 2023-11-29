@@ -47,7 +47,7 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
           />
           <h4 className="font-bold text-large text-center"> {Name}</h4>
           <h4 className="font-bold text-large text-green-500 text-center">$ {Price}</h4>
-          <h4 className="font-bold text-large">{Description}</h4>
+          <h4 className="font-bold text-large text-center text-[#949494]">{Description}</h4>
         </CardBody>
         <CardFooter >
           <Button className="text-center  w-full" color="primary" variant="shadow" onClick={handleButtonClick}>
