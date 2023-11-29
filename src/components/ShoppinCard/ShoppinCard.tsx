@@ -13,8 +13,8 @@ const ShoppingCart: React.FC = () => {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto bg-black rounded-md shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Carrito de Compras</h2>
+    <div className="p-4 max-w-md m-9 mx-auto bg-black rounded-md shadow-md">
+      <h2 className="text-2xl text-center font-bold mb-4">Carrito de Compras</h2>
       {cartItems.length === 0 ? (
         <p className="italic text-gray-600">El carrito está vacío</p>
       ) : (
