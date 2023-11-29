@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const LoginUser = () => {
   const [UserName, setUserName] = useState('');
   const [Password, setPassword] = useState('');
   const router = useRouter();
 
+ 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -15,19 +17,43 @@ const LoginUser = () => {
         UserName,
         Password,
       });
-
+  
       if (response.status === 200) {
         const data = response.data;
         localStorage.setItem('token', data.token);
+  
+        // Show success alert
+        Swal.fire({
+          icon: 'success',
+          title: 'Bienvenido de nuevo',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+  
         console.log('Logged in successfully');
         router.push('/dashboard');
       } else {
+        // Show error alert
+        Swal.fire({
+          icon: 'error',
+          title: 'Usuario no encontrado',
+          text: 'Por favor, verifica tus credenciales e intenta nuevamente.',
+        });
+  
         console.log('Failed to log in');
       }
     } catch (error) {
+      // Show error alert for unexpected errors
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Ha ocurrido un error. Por favor, intenta nuevamente.',
+      });
+  
       console.error('Error:', error);
     }
   };
+  
 
   return (
     <div className=''>

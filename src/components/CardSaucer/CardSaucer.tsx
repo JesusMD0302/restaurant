@@ -10,6 +10,8 @@ export interface CardSaucerProps {
   Description: string;
   Status: string;
   onClick?: () => void;
+  
+
   /*  setCartModalOpen: React.Dispatch<React.SetStateAction<boolean>>; */
 }
 
@@ -21,6 +23,7 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
   Description,
   Status,
   onClick,
+ 
   /*  setCartModalOpen */
 }) => {
   const handleButtonClick = (e: React.MouseEvent) => {
