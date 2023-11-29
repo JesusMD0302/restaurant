@@ -1,7 +1,7 @@
 // components/ShoppingCart/ShoppingCart.tsx
 import React from "react";
 import { useCart } from "../CartContext/CartContext";
-
+import Link from "next/link";
 const ShoppingCart: React.FC = () => {
   const { cartItems, removeFromCart } = useCart();
 
@@ -14,6 +14,28 @@ const ShoppingCart: React.FC = () => {
 
   return (
     <div className="p-4 max-w-md m-9 mx-auto bg-black rounded-md shadow-md">
+      <div className="flex items-center mb-4">
+        <Link  className="text-blue-500" href="/">
+        
+            {/* SVG de flecha izquierda */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="h-6 w-6 mr-2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Regresar
+          
+        </Link>
+      </div>
       <h2 className="text-2xl text-center font-bold mb-4">Carrito de Compras</h2>
       {cartItems.length === 0 ? (
         <p className="italic text-gray-600">El carrito está vacío</p>
