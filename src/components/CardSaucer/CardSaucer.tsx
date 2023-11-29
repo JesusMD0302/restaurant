@@ -2,14 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Button, CardFooter } from "@nextui-org/react";
 import axios from "axios";
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
-export interface CardSaucerProps {
-  imageUrl: string;
-  Price: number;
-  Id: number;
-  Name: string;
-  Description: string;
-  Status: string;
-  onClick?: () => void;
+
+  export interface CardSaucerProps {
+    imageUrl: string;
+    Price: number;
+    Id: number;
+    Name: string;
+    Description: string;
+    Status: string;
+    quantity: number; // Assuming you have a quantity property
+    Type: string;
+    onClick?: () => void;
+  
   
 
   /*  setCartModalOpen: React.Dispatch<React.SetStateAction<boolean>>; */
