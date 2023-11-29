@@ -1,102 +1,80 @@
 "use client";
 import CardSaucer from "@/components/CardSaucer/CardSaucer";
-/* import OptionsTabs from "@/components/Tabs/Optionstabs"; */
-import {
-  useDisclosure,
-} from "@nextui-org/react";
-import React, { useState } from "react";
-import Image from 'next/image'
+import React, { useEffect, useState } from "react";
 import ModalSacuer from "../ModalDescriptionSaucer/ModalSaucer";
+import axios from "axios";
+import { useCart } from "../CartContext/CartContext";
 interface Card {
-  imageUrl: string;
-  title: string;
-  regularPrice: string;
-  salePrice: string;
-  description: string;
-  viewUrl: string;
+  imageUrl: "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6";
+  Price: number;
+  Id: number;
+  Name: string;
+  Description: string;
+  Status: string;
 }
-
+interface Data {
+  Data: Card[];
+}
 export default function CardSaucerContainer() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpen, setIsOpen] = useState(false);
+  const [productId, setProductId] = useState<number | null>(null);
+  /*   const { isOpen, onOpen, onClose } = useDisclosure(); */
   const [selectedCard, setSelectedCard] = useState<Card | null>(null);
+  const { addToCart } = useCart();
+  const [data, setData] = useState<Data | null>(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5285/api/Food?IsDeleted=false"
+        );
 
-  const cardData = [
-    {
-      imageUrl:
-        "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6",
-      title: "Espaguetis con salsa de gambas ",
-      regularPrice: "$700.00",
-      salePrice: "$700.00",
-      description: "Descripcion de producto",
-      viewUrl: "foodiesapp://food/1002",
-    },
-    {
-      imageUrl:
-        "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6",
-      title: "Espaguetis con salsa de gambas ",
-      regularPrice: "$700.00",
-      salePrice: "$700.00",
-      description: "Descripcion de producto",
-      viewUrl: "foodiesapp://food/1002",
-    },
-    {
-      imageUrl:
-        "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6",
-      title: "Espaguetis con salsa de gambas ",
-      regularPrice: "$700.00",
-      salePrice: "$700.00",
-      description: "Descripcion de producto",
-      viewUrl: "foodiesapp://food/1002",
-    },
-    {
-      imageUrl:
-        "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6",
-      title: "Espaguetis con salsa de gambas ",
-      regularPrice: "$700.00",
-      salePrice: "$700.00",
-      description: "Descripcion de producto",
-      viewUrl: "foodiesapp://food/1002",
-    },
-    {
-      imageUrl:
-        "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6",
-      title: "Espaguetis con salsa de gambas ",
-      regularPrice: "$700.00",
-      salePrice: "$700.00",
-      description: "Descripcion de producto",
-      viewUrl: "foodiesapp://food/1002",
-    },
-  ];
+        setData(response.data);
+      } catch (error) {
+        console.error(`Error al hacer la solicitud: ${error}`);
+      }
+    };
+
+    fetchData();
+  }, []);
   const handleCardClick = (card: Card) => {
+    addToCart({
+      ...card,
+      imageUrl: "https://www.conasi.eu/blog/wp-content/uploads/2014/07/zumo-de-sand%C3%ADa-1.jpg",
+      
+    })
     setSelectedCard(card);
-    onOpen();
+    setProductId(card.Id); // establece el ID del producto aquí
+    setIsOpen(true); // Abre el modal
   };
-
   const handleModalClose = () => {
     setSelectedCard(null);
-    onClose();
+    setIsOpen(false); // Cierra el modal
   };
   return (
     <>
       <div className="flex flex-col ">
         <h1 className="py-5 text-2xl">ELIGE LOS PLATILLOS:</h1>
-        <div className="py-4 grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 ">
-          {cardData.map((card, index) => (
-            <CardSaucer
-              key={index}
-              {...card}
-              onClick={() => handleCardClick(card)}
-            />
-          ))}
+        <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 ">
+          {data &&
+            data.Data.map((card, index) => (
+              <CardSaucer
+                key={index}
+                {...card}
+                imageUrl="https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6"
+                onClick={() => handleCardClick(card)}
+              />
+            ))}
         </div>
       </div>
       {isOpen && selectedCard !== null && (
         <ModalSacuer
-        isOpen={isOpen}
-        onClose={handleModalClose}
-        selectedCard={selectedCard}
-      />
+          isOpen={isOpen}
+          onClose={handleModalClose}
+          selectedCard={selectedCard}
+          productId={productId} 
+        />
       )}
     </>
   );

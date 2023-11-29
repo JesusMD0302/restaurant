@@ -4,16 +4,31 @@ import { BsPersonCircle } from "react-icons/bs";
 import useDate from "@/hooks/useDate";
 import Link from "next/link";
 import Title from "../Title/Title";
+import CustomNavbar from "@/AuthContext/AuthContext";
+import { useState, useEffect } from "react";
+import { useCart } from "../CartContext/CartContext";
 export default function Search() {
   const [date] = useDate(Date.now());
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const payload = JSON.parse(atob(token?.split(".")[1] || "") || "{}");
+      setUserName(
+        payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+      );
+    }
+  }, []);
+  const { cartItems } = useCart();
   return (
-    <div className="pt-4 w-full ">
+    <div className="pt-4 w-full  ">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center">
         {/* Nombre en la parte superior para pantallas móviles */}
         <div className=" text-center md:text-left md:col-span-1">
           {/*  <h1 className=" text-3xl">Bienvenido Josue!!</h1>
           <h1 className="text-2x1 mt-2 ">{date}</h1> */}
-          <Title isFirstTitle title="Jaegar Resto" subtitle={date} />
+          <Title isFirstTitle title={userName} subtitle={date} />
         </div>
 
         {/* Buscador */}
@@ -42,19 +57,30 @@ export default function Search() {
               className={`w-80 md:w-96 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 pl-10 p-2.5 pr-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
               placeholder="Search for items"
             />
+            
             <div className="items-center space-x-2 ml-10 hidden md:flex">
-              <BsCart3 className="text-xl cursor-pointer" title="Carrito" />
-              {/* <BsPersonCircle className="text-xl cursor-pointer" /> */}
+            <Link href={"/cart"}>
+              <div className="relative">
+                <BsCart3 className="text-xl cursor-pointer" title="Carrito" />
+                {cartItems.length > 0 && (
+                  <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">
+                    {cartItems.length}
+                  </span>
+                )}
+              </div>
+            </Link>
+              
             </div>
-            <Link href="/login">
-              <div className="items-center space-x-2 ml-10 hidden md:flex">
-                {/* <BsCart3 className="text-xl cursor-pointer" /> */}
+            <div>
+              <CustomNavbar></CustomNavbar>
+              {/* <div className="items-center space-x-2 ml-10 hidden md:flex">
+                <BsCart3 className="text-xl cursor-pointer" />
                 <BsPersonCircle
                   className="text-xl cursor-pointer"
                   title="Inicio de sesion"
                 />
-              </div>
-            </Link>
+              </div> */}
+            </div>
           </div>
         </div>
       </div>
