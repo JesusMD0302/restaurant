@@ -62,9 +62,9 @@ export default function Search() {
             <Link href={"/cart"}>
               <div className="relative">
                 <BsCart3 className="text-xl cursor-pointer" title="Carrito" />
-                {cartItems.length > 0 && (
+                {Object.keys(cartItems).length > 0 && (
                   <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">
-                    {cartItems.length}
+                    {Object.values(cartItems).length}
                   </span>
                 )}
               </div>
