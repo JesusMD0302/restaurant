@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { FaBeer } from 'react-icons/fa';
 import {
   Modal,
   ModalContent,
@@ -12,6 +13,7 @@ import {
   Input,
   Link,
 } from "@nextui-org/react";
+import { BsCurrencyDollar } from "react-icons/bs";
 import { Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import { Card, CardBody } from "@nextui-org/react";
@@ -104,7 +106,7 @@ const ModalAddFood = () => {
         backdrop="blur"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        placement="top-center"
+        placement="center"
         className="bg-[#252836]"
       >
         <ModalContent>
@@ -127,9 +129,7 @@ const ModalAddFood = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
                 <Input
-                  /* endContent={
-                    <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                  } */
+                 
                   label="Descripción"
                   placeholder="Escribe la Descripción"
                   type="text"
@@ -138,6 +138,9 @@ const ModalAddFood = () => {
                   variant="bordered"
                 />
                 <Input
+                 startContent={
+                  <BsCurrencyDollar   className=" text-default-400 pointer-events-none flex-shrink-0 " />
+                }
                   label="Precio"
                   placeholder="Escribe el Precio"
                   type="number"
