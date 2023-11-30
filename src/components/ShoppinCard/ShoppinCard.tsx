@@ -5,9 +5,9 @@ import Link from "next/link";
 import axios from 'axios'; // Import axios for making HTTP requests
 
 const ShoppingCart: React.FC = () => {
-  const { cartItems, removeFromCart } = useCart();
+  const { cartFood, cartDrinks, removeFromCart } = useCart();
 
-  const total = Object.values(cartItems).reduce((acc, item) => acc + item.Price * item.quantity, 0);
+  const total = Object.values(cartFood).reduce((acc, item) => acc + item.Price * item.quantity, 0);
 
   const handleRemoveItem = (itemId: number) => {
     removeFromCart(itemId);
@@ -20,11 +20,9 @@ const ShoppingCart: React.FC = () => {
       const orderData = {
         CustomerId: 0,  
         BranchStoreId: 1,  
-        FoodIds: Object.values(cartItems)
-        .filter((item) => item.Type === "Food")
+        FoodIds: Object.values(cartFood)
         .map((item) => item.Id),
-      DrinkIds: Object.values(cartItems)
-        .filter((item) => item.Type === "Drink")
+      DrinkIds: Object.values(cartDrinks)
         .map((item) => item.Id),
       };
 
@@ -71,12 +69,12 @@ const ShoppingCart: React.FC = () => {
         </Link>
       </div>
        <h2 className="text-2xl font-bold mb-4 text-center">Carrito de Compras</h2>
-      {Object.keys(cartItems).length === 0 ? (
+      {Object.keys(cartFood).length === 0 ? (
         <p className="italic text-gray-600">El carrito está vacío</p>
       ) : (
         <div>
           <ul className="divide-y divide-gray-200">
-            {Object.values(cartItems).map((item) => (
+            {Object.values(cartFood).map((item) => (
               <li key={item.Id} className="py-2">
                 <div className="flex items-center justify-between">
                   <div>

@@ -3,8 +3,10 @@ import React, { createContext, useContext, useState } from "react";
 import { CardSaucerProps } from "../CardSaucer/CardSaucer";
 
 interface CartContextType {
-  cartItems: Record<number, CardSaucerProps & { quantity: number }>;
+  cartFood: Record<number, CardSaucerProps & { quantity: number }>;
+  cartDrinks: Record<number, CardSaucerProps & { quantity: number }>;
   addToCart: (item: CardSaucerProps) => void;
+  addDrinkToCart: (item: CardSaucerProps) => void;
   removeFromCart: (itemId: number) => void;
 }
 
@@ -15,14 +17,14 @@ interface CartProviderProps {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<CartContextType["cartItems"]>({});
+  const [cartItems, setCartItems] = useState<CartContextType["cartFood"]>({});
+  const [cartDrinks, setCartDrinks] = useState<CartContextType["cartDrinks"]>({});
 
-  const addToCart = (item: CardSaucerProps) => {
+  const addFoodToCart = (item: CardSaucerProps) => {
     setCartItems((prev) => {
       const itemId = item.Id;
 
       if (prev[itemId]) {
-        // Si el elemento ya existe en el carrito, incrementa la cantidad
         return {
           ...prev,
           [itemId]: {
@@ -31,7 +33,30 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
           },
         };
       } else {
-        // Si el elemento no existe en el carrito, añádelo con cantidad 1
+        return {
+          ...prev,
+          [itemId]: {
+            ...item,
+            quantity: 1,
+          },
+        };
+      }
+    });
+  };
+
+  const addDrinkToCart = (item: CardSaucerProps) => {
+    setCartDrinks((prev) => {
+      const itemId = item.Id;
+
+      if (prev[itemId]) {
+        return {
+          ...prev,
+          [itemId]: {
+            ...item,
+            quantity: prev[itemId].quantity + 1,
+          },
+        };
+      } else {
         return {
           ...prev,
           [itemId]: {
@@ -47,9 +72,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     setCartItems((prev) => {
       const updatedCart = { ...prev };
       if (updatedCart[itemId]) {
-        // Si el elemento existe en el carrito, reduce la cantidad
         updatedCart[itemId].quantity = Math.max(0, updatedCart[itemId].quantity - 1);
-        // Si la cantidad llega a 0, elimina el elemento del carrito
         if (updatedCart[itemId].quantity === 0) {
           delete updatedCart[itemId];
         }
@@ -59,7 +82,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartFood: cartItems, cartDrinks: cartDrinks, addToCart: addFoodToCart, addDrinkToCart, removeFromCart }}>
+      {children}
       {children}
     </CartContext.Provider>
   );
