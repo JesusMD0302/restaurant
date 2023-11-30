@@ -57,8 +57,6 @@ export default function CardSaucerContainer() {
     setIsOpen(false); // Close the modal
   };
 
-  setSelectedCard(null);
-  setIsOpen(false); // Cierra el modal
   return (
     <>
       <div className="flex flex-col ">
