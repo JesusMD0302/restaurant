@@ -58,6 +58,7 @@ const ModalAddFood = () => {
       setDescription("");
       setPrice(0);
       console.error('Hay que iniciar sesion burro!!');
+      console.log(error)
     }
   };
 

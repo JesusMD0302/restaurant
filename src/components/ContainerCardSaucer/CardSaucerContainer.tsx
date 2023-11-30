@@ -41,9 +41,9 @@ export default function CardSaucerContainer() {
   const handleCardClick = (card: Card) => {
     addToCart({
       ...card,
-      imageUrl: "https://www.conasi.eu/blog/wp-content/uploads/2014/07/zumo-de-sand%C3%ADa-1.jpg",
-      
-    })
+      imageUrl:
+        "https://www.conasi.eu/blog/wp-content/uploads/2014/07/zumo-de-sand%C3%ADa-1.jpg",
+    });
     setSelectedCard(card);
     setProductId(card.Id); // establece el ID del producto aquí
     setIsOpen(true); // Abre el modal
@@ -73,7 +73,7 @@ export default function CardSaucerContainer() {
           isOpen={isOpen}
           onClose={handleModalClose}
           selectedCard={selectedCard}
-          productId={productId} 
+          productId={productId}
         />
       )}
     </>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import CustomNavbar from "@/AuthContext/Var";
 import Image from "next/image";
 import StoreIcon from "@/../public/images/store-icon.svg";
 import { BsHouse } from "react-icons/bs";

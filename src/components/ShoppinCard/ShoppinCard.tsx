@@ -1,5 +1,5 @@
 // components/ShoppingCart/ShoppingCart.tsx
-import React from "react";
+import React, { useEffect } from "react";
 import { useCart } from "../CartContext/CartContext";
 
 const ShoppingCart: React.FC = () => {
@@ -12,9 +12,15 @@ const ShoppingCart: React.FC = () => {
     removeFromCart(itemId);
   };
 
+  useEffect(() => {
+    console.log(cartItems);
+  }, [cartItems]);
+
   return (
     <div className="p-4 max-w-md m-9 mx-auto bg-black rounded-md shadow-md">
-      <h2 className="text-2xl text-center font-bold mb-4">Carrito de Compras</h2>
+      <h2 className="text-2xl text-center font-bold mb-4">
+        Carrito de Compras
+      </h2>
       {cartItems.length === 0 ? (
         <p className="italic text-gray-600">El carrito está vacío</p>
       ) : (
