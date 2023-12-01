@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CardUpdateDrink from "../CardUpdateDrink/CardUpdateDrink";
+import ModalAddDrink from "../ModalAddDrink/ModalAddDrink";
 interface Card {
   imageUrl: "https://www.conasi.eu/blog/wp-content/uploads/2014/07/zumo-de-sand%C3%ADa-1.jpg";
   Price: number;
@@ -44,15 +45,15 @@ export default function CardAddDrinkContainer() {
   const handleModalClose = () => {
     setSelectedCard(null);
     setIsOpen(false); // Cierra el modal
-    
   };
-  
+
   return (
     <>
       <div className="flex flex-col ">
         {/* <h1 className="py-5 text-2xl">ELIGE LOS PLATILLOS:</h1> */}
-        <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 ">
-        {data &&
+        <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 mx-4 ">
+          <ModalAddDrink />
+          {data &&
             data.Data.map((card, index) => (
               <CardUpdateDrink
                 key={index}

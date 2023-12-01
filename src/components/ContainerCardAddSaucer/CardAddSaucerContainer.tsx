@@ -8,6 +8,7 @@ import CardAddSaucer from "../CardAddSaucer/CardUpdateSaucer";
 import axios from "axios";
 import CardSaucer from "../CardSaucer/CardSaucer";
 import CardUpdateSaucer from "../CardAddSaucer/CardUpdateSaucer";
+import ModalAddFood from "../ModalAddFood/ModalAddFood";
 interface Card {
   imageUrl: "https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6";
   Price: number;
@@ -56,7 +57,8 @@ export default function CardAddSaucerContainer() {
     <>
       <div className="flex flex-col ">
         {/* <h1 className="py-5 text-2xl">ELIGE LOS PLATILLOS:</h1> */}
-        <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 ">
+        <div className="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 mx-4  ">
+        <ModalAddFood/>
         {data &&
             data.Data.map((card, index) => (
               <CardUpdateSaucer

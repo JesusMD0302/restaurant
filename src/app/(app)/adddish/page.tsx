@@ -5,7 +5,7 @@ import CardAddSaucerContainer from "@/components/ContainerCardAddSaucer/CardAddS
 export default function Home() {
   return (
     <div className="pt-8 flex items-start">
-      <ModalAddFood/>
+     
      
       <CardAddSaucerContainer/>
     </div>
