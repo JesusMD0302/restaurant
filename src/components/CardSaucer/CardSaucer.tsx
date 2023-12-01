@@ -2,14 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Button, CardFooter } from "@nextui-org/react";
 import axios from "axios";
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
-export interface CardSaucerProps {
-  imageUrl: string;
-  Price: number;
-  Id: number;
-  Name: string;
-  Description: string;
-  Status: string;
-  onClick?: () => void;
+
+  export interface CardSaucerProps {
+    imageUrl: string;
+    Price: number;
+    Id: number;
+    Name: string;
+    Description: string;
+    Status: string;
+    quantity: number; // Assuming you have a quantity property
+    Type: string;
+    onClick?: any;
+  
+  
+
   /*  setCartModalOpen: React.Dispatch<React.SetStateAction<boolean>>; */
 }
 
@@ -21,6 +27,9 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
   Description,
   Status,
   onClick,
+  Type,
+  quantity,
+ 
   /*  setCartModalOpen */
 }) => {
   const handleButtonClick = (e: React.MouseEvent) => {
@@ -40,7 +49,7 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
           />
           <h4 className="font-bold text-large text-center"> {Name}</h4>
           <h4 className="font-bold text-large text-green-500 text-center">$ {Price}</h4>
-          <h4 className="font-bold text-large">{Description}</h4>
+          <h4 className="font-bold text-large text-center text-[#949494]">{Description}</h4>
         </CardBody>
         <CardFooter >
           <Button className="text-center  w-full" color="primary" variant="shadow" onClick={handleButtonClick}>

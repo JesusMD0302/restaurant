@@ -98,13 +98,15 @@ const ModalSacuer: React.FC<ModalSaucerProps> = ({
                   viewBox="0 0 20 20"
                 >
                   <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                </svg> <svg
+                </svg>{" "}
+                <svg
                   className="mx-1 w-5 h-5 fill-current text-yellow-500"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                 >
                   <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                </svg> <svg
+                </svg>{" "}
+                <svg
                   className="mx-1 w-5 h-5 fill-current text-yellow-500"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -113,11 +115,15 @@ const ModalSacuer: React.FC<ModalSaucerProps> = ({
                 </svg>
               </div>
             </div>
-            <p className="mt-3">{productData.Description}</p>
-            <div className="flex justify-between mt-4">
-              <p>Precio: ${productData.Price}</p>
-              <p>Estado: {productData.Status}</p>
-            </div>
+            <h4 className="font-bold text-large text-center text-[#949494]">
+             Descripcion: {productData.Description}
+            </h4>
+            <h4 className="font-bold text-large text-green-500 text-center">
+              Precio:  $ {productData.Price}
+            </h4>
+            {/*   <p className="mt-3 text-center ">{productData.Description}</p>
+
+            <p className="text-center">Precio: ${}</p> */}
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={onClose}>
@@ -131,4 +137,3 @@ const ModalSacuer: React.FC<ModalSaucerProps> = ({
 };
 
 export default ModalSacuer;
-

@@ -1,8 +1,8 @@
-"use client";
-import React from 'react'
+"use client"
+
 import ShoppingCart from '@/components/ShoppinCard/ShoppinCard';
 export default function page() {
   return (
-    <div><ShoppingCart></ShoppingCart></div>
+    <div><ShoppingCart /></div>
   )
 }

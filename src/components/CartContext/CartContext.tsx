@@ -1,10 +1,14 @@
 // CartContext.tsx
 import React, { createContext, useContext, useState } from "react";
 import { CardSaucerProps } from "../CardSaucer/CardSaucer";
+
 interface CartContextType {
-  cartItems: CardSaucerProps[];
+  cartFood: Record<number, CardSaucerProps & { quantity: number }>;
+  cartDrinks: Record<number, CardSaucerProps & { quantity: number }>;
   addToCart: (item: CardSaucerProps) => void;
+  addDrinkToCart: (item: CardSaucerProps) => void;
   removeFromCart: (itemId: number) => void;
+  removeDrinkFromCart: (itemId: number) => void;
 }
 
 interface CartProviderProps {
@@ -14,19 +18,86 @@ interface CartProviderProps {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<CardSaucerProps[]>([]);
+  const [cartItems, setCartItems] = useState<CartContextType["cartFood"]>({});
+  const [cartDrinks, setCartDrinks] = useState<CartContextType["cartDrinks"]>({});
 
-  const addToCart = (item: CardSaucerProps) => {
-    setCartItems([...cartItems, item]);
+  const addFoodToCart = (item: CardSaucerProps) => {
+    setCartItems((prev) => {
+      const itemId = item.Id;
+
+      if (prev[itemId]) {
+        return {
+          ...prev,
+          [itemId]: {
+            ...item,
+            quantity: prev[itemId].quantity + 1,
+          },
+        };
+      } else {
+        return {
+          ...prev,
+          [itemId]: {
+            ...item,
+            quantity: 1,
+          },
+        };
+      }
+    });
   };
 
-  const removeFromCart = (itemId: number) => {
-    setCartItems(cartItems.filter((item) => item.Id !== itemId));
+  const addDrinkToCart = (item: CardSaucerProps) => {
+    setCartDrinks((prev) => {
+      const itemId = item.Id;
+
+      if (prev[itemId]) {
+        return {
+          ...prev,
+          [itemId]: {
+            ...item,
+            quantity: prev[itemId].quantity + 1,
+          },
+        };
+      } else {
+        return {
+          ...prev,
+          [itemId]: {
+            ...item,
+            quantity: 1,
+          },
+        };
+      }
+    });
+  };
+
+  const removeFoodFromCart = (itemId: number) => {
+    setCartItems((prev) => {
+      const updatedCart = { ...prev };
+      if (updatedCart[itemId]) {
+        updatedCart[itemId].quantity = Math.max(0, updatedCart[itemId].quantity - 1);
+        if (updatedCart[itemId].quantity === 0) {
+          delete updatedCart[itemId];
+        }
+      }
+      return updatedCart;
+    });
+  };
+  const removeDrinkFromCart = (itemId: number) => {
+    setCartDrinks((prev) => {
+      const updatedCart = { ...prev };
+      if (updatedCart[itemId]) {
+        updatedCart[itemId].quantity = Math.max(0, updatedCart[itemId].quantity - 1);
+        if (updatedCart[itemId].quantity === 0) {
+          delete updatedCart[itemId];
+        }
+      }
+      return updatedCart;
+    });
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartFood: cartItems, cartDrinks: cartDrinks, addToCart: addFoodToCart, addDrinkToCart, removeFromCart: removeFoodFromCart, removeDrinkFromCart }}>
       {children}
+      
     </CartContext.Provider>
   );
 };

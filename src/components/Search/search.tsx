@@ -7,9 +7,11 @@ import Title from "../Title/Title";
 import CustomNavbar from "@/AuthContext/AuthContext";
 import { useState, useEffect } from "react";
 import { useCart } from "../CartContext/CartContext";
+
 export default function Search() {
   const [date] = useDate(Date.now());
   const [userName, setUserName] = useState("");
+  const { cartFood, cartDrinks } = useCart();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -20,7 +22,6 @@ export default function Search() {
       );
     }
   }, []);
-  const { cartItems } = useCart();
   return (
     <div className="pt-4 w-full  ">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center">
@@ -57,29 +58,22 @@ export default function Search() {
               className={`w-80 md:w-96 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 pl-10 p-2.5 pr-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
               placeholder="Search for items"
             />
-            
+
             <div className="items-center space-x-2 ml-10 hidden md:flex">
-            <Link href={"/cart"}>
-              <div className="relative">
-                <BsCart3 className="text-xl cursor-pointer" title="Carrito" />
-                {cartItems.length > 0 && (
-                  <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">
-                    {cartItems.length}
-                  </span>
-                )}
-              </div>
-            </Link>
-              
+              <Link href={"/cart"}>
+                <div className="relative">
+                  <BsCart3 className="text-xl cursor-pointer" title="Carrito" />
+                  {Object.keys(cartFood).length > 0 && (
+                    <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">
+                      {Object.values(cartFood).length +
+                        Object.values(cartDrinks).length}
+                    </span>
+                  )}
+                </div>
+              </Link>
             </div>
             <div>
               <CustomNavbar></CustomNavbar>
-              {/* <div className="items-center space-x-2 ml-10 hidden md:flex">
-                <BsCart3 className="text-xl cursor-pointer" />
-                <BsPersonCircle
-                  className="text-xl cursor-pointer"
-                  title="Inicio de sesion"
-                />
-              </div> */}
             </div>
           </div>
         </div>
