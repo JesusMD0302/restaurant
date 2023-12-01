@@ -26,25 +26,25 @@ export default function Title({
 
   if (isFirstTitle) {
     return (
-      <div>
+      <section>
         <h1 style={titleStyle} className="font-semibold">
           {title}
         </h1>
         <p style={subtitleStyle} className="font-normal text-[#ABBBC2]">
           {subtitle}
         </p>
-      </div>
+      </section>
     );
   }
 
   return (
-    <div>
+    <section>
       <p style={titleStyle} className="font-semibold">
         {title}
       </p>
       <p style={subtitleStyle} className="font-normal text-[#ABBBC2]">
         {subtitle}
       </p>
-    </div>
+    </section>
   );
 }

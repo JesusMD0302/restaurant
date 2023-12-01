@@ -4,5 +4,5 @@ interface GridContainerProps {
 }
 
 export default function GridContainer({ children, className }: GridContainerProps) {
-  return <div className={`grid gap-6 ${className}`}>{children}</div>;
+  return <section className={`grid gap-6 ${className}`}>{children}</section>;
 }

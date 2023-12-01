@@ -1,23 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import CustomNavbar from "@/AuthContext/Var";
 import Image from "next/image";
 import StoreIcon from "@/../public/images/store-icon.svg";
 import { BsHouse } from "react-icons/bs";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { CiDiscount1 ,CiSettings } from "react-icons/ci";
-import {
-  Button,
-  Link,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  Navbar as UINavbar,
-} from "@nextui-org/react";
 import NavTab from "@/components/NavTab/NavTab";
 
 export default function Navbar() {
@@ -25,7 +13,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="w-[104px] h-screen hidden sm:flex sm:flex-col items-end bg-[#1F1D2B] border-">
+      <div className="sticky top-0 w-[104px] h-screen hidden sm:flex sm:flex-col items-end bg-[#1F1D2B] border-none">
         <NavTab
           isOnlyIcon
           href="/"

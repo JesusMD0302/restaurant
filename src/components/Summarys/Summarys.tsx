@@ -10,7 +10,7 @@ import { HiOutlineUsers } from "react-icons/hi2";
 
 export default function Summarys() {
   return (
-    <GridContainer className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+    <GridContainer className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       <Card>
         <CardHeader className="p-4 flex gap-3">
           <IconContainer color="#252836">
