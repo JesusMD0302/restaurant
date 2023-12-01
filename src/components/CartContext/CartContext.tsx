@@ -8,6 +8,7 @@ interface CartContextType {
   addToCart: (item: CardSaucerProps) => void;
   addDrinkToCart: (item: CardSaucerProps) => void;
   removeFromCart: (itemId: number) => void;
+  removeDrinkFromCart: (itemId: number) => void;
 }
 
 interface CartProviderProps {
@@ -68,8 +69,20 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     });
   };
 
-  const removeFromCart = (itemId: number) => {
+  const removeFoodFromCart = (itemId: number) => {
     setCartItems((prev) => {
+      const updatedCart = { ...prev };
+      if (updatedCart[itemId]) {
+        updatedCart[itemId].quantity = Math.max(0, updatedCart[itemId].quantity - 1);
+        if (updatedCart[itemId].quantity === 0) {
+          delete updatedCart[itemId];
+        }
+      }
+      return updatedCart;
+    });
+  };
+  const removeDrinkFromCart = (itemId: number) => {
+    setCartDrinks((prev) => {
       const updatedCart = { ...prev };
       if (updatedCart[itemId]) {
         updatedCart[itemId].quantity = Math.max(0, updatedCart[itemId].quantity - 1);
@@ -82,7 +95,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cartFood: cartItems, cartDrinks: cartDrinks, addToCart: addFoodToCart, addDrinkToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartFood: cartItems, cartDrinks: cartDrinks, addToCart: addFoodToCart, addDrinkToCart, removeFromCart: removeFoodFromCart, removeDrinkFromCart }}>
       {children}
       
     </CartContext.Provider>

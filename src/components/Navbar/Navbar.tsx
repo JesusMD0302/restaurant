@@ -1,23 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import CustomNavbar from "@/AuthContext/Var";
 import Image from "next/image";
 import StoreIcon from "@/../public/images/store-icon.svg";
 import { BsHouse } from "react-icons/bs";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { CiDiscount1 ,CiSettings } from "react-icons/ci";
-import {
-  Button,
-  Link,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  Navbar as UINavbar,
-} from "@nextui-org/react";
 import NavTab from "@/components/NavTab/NavTab";
 
 export default function Navbar() {
