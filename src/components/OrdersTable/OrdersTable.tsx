@@ -11,19 +11,20 @@ import {
   User,
   getKeyValue,
 } from "@nextui-org/react";
-import { Key, useCallback, useEffect, useMemo } from "react";
+import { Key, useCallback, useMemo } from "react";
 
 const COLUMS = [
-  { key: "customer", label: "Customer" },
-  { key: "menu", label: "Menú" },
-  { key: "total", label: "Total Payment" },
-  { key: "status", label: "Status" },
+  { key: "CustomerFullName", label: "Customer" },
+  // { key: "menu", label: "Menú" },
+  // { key: "total", label: "Total Payment" },
+  { key: "StatusName", label: "Status" },
 ];
 
 export default function OrdersTable({ orders }: { orders: Order[] }) {
   const classNames = useMemo(
     () => ({
       wrapper: ["min-h-[300px]", "max-w-3xl", "flex-1"],
+      thead: ["sticky top-0 z-30 bg-[#1f1d2b] [&_th]:aria-hidden:hidden"],
       th: [
         "bg-transparent",
         "border-b",
@@ -56,26 +57,16 @@ export default function OrdersTable({ orders }: { orders: Order[] }) {
     const cellValue = getKeyValue(item, key);
 
     switch (key) {
-      case "customer":
-        return (
-          <User
-            name={cellValue!.name}
-            avatarProps={{
-              src: cellValue!.avatar,
-            }}
-          />
-        );
-      case "total":
-        return `$${cellValue}`;
-      case "status":
+      case "CustomerFullName":
+        return <User name={cellValue} />;
+      // case "total":
+      //   return `$${cellValue}`;
+      case "StatusName":
         switch (cellValue) {
-          case "completed":
-            return <Chip color="success">Completed</Chip>;
-          case "preparing":
-            return <Chip color="secondary">Preparing</Chip>;
-          case "pending":
-            return <Chip color="warning">Pending</Chip>;
-
+          case "Terminado":
+            return <Chip color="success">Completado</Chip>;
+          case "Pedido":
+            return <Chip color="secondary">Pedido</Chip>;
           default:
             return <Chip color="default">Unknow</Chip>;
         }
@@ -98,7 +89,7 @@ export default function OrdersTable({ orders }: { orders: Order[] }) {
 
       <TableBody emptyContent={"No orders found"} items={orders}>
         {(order) => (
-          <TableRow key={order.key}>
+          <TableRow key={order.Id}>
             {(columnKey) => (
               <TableCell>{renderCell(order, columnKey)}</TableCell>
             )}

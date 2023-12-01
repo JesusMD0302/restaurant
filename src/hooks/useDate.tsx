@@ -30,7 +30,7 @@ const useDate = (date: number | string | Date) => {
   useEffect(() => {
     setFormatedDate(
       `${weekDays[newDate.getDay()]} ${newDate.getDate()} ${
-        months[newDate.getMonth()]
+        months[newDate.getMonth() - 1]
       }, ${newDate.getFullYear()}`
     );
   }, [newDate]);

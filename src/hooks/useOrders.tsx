@@ -8,12 +8,19 @@ const useOrders = () => {
   const [errors, setErrors] = useState("");
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return;
+    }
+
     setLoading(true);
 
-    fetchOrders()
+    fetchOrders(token)
       .then((response) => {
-        const { data, status } = response;
-        setOrders(data);
+        const { orders, status } = response;
+        console.log(orders);
+        setOrders(orders);
         setStatus(status);
       })
       .catch((err) => {

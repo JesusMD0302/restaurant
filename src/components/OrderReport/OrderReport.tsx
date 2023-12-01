@@ -10,18 +10,18 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  Spinner,
 } from "@nextui-org/react";
 import { BsSliders } from "react-icons/bs";
-import OrdersTableSkeleton from "../OrdersTableSkeleton/OrdersTableSkeleton";
 
 export default function OrderReport() {
   const { orders, errors, loading, status } = useOrders();
 
   return (
-    <Card className="flex-1 max-h-[270px] overflow-visible">
+    <Card className="flex-1 overflow-visible">
       <CardHeader className="p-4 flex justify-between">
         <Title title="Order Report" titleSize={20} />
-        <Dropdown>
+        {/* <Dropdown>
           <DropdownTrigger>
             <Button variant="bordered" startContent={<BsSliders />}>
               Filter Order
@@ -30,11 +30,11 @@ export default function OrderReport() {
           <DropdownMenu>
             <DropdownItem key="status">Status</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown> */}
       </CardHeader>
         {loading || orders === null && (
-        <CardBody className="p-0">
-          <OrdersTableSkeleton />
+        <CardBody className="grid place-items-center">
+          <Spinner />
         </CardBody>
       )}
       {!loading && orders !== null && (
