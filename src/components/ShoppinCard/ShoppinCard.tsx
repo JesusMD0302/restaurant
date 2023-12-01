@@ -1,12 +1,36 @@
 // components/ShoppingCart/ShoppingCart.tsx
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useCart } from "../CartContext/CartContext";
 import Link from "next/link";
 import axios from "axios"; // Import axios for making HTTP requests
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
+
+import CheckoutForm from "@/components/CheckoutForm/CheckoutForm";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51OFqy6G5vLVbLYUKl1jIzbcad2PRIoGo40Hu3nbVAW5XYXT8wr81TkMi0gVx3C7DW0e38OG4LuaZB3IYBAjP7abJ00Uq8VaQDx"
+);
 
 const ShoppingCart: React.FC = () => {
-  const { cartFood, cartDrinks, removeFromCart, removeDrinkFromCart } =
-    useCart();
+  const {
+    cartFood,
+    cartDrinks,
+    cart,
+    removeFromCart,
+    removeDrinkFromCart,
+    updateCart,
+  } = useCart();
+
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   const total =
     Object.values(cartFood).reduce(
@@ -30,6 +54,12 @@ const ShoppingCart: React.FC = () => {
 
     if (token) {
       const payload = JSON.parse(atob(token?.split(".")[1] || "") || "{}");
+
+      if (total <= 0) {
+        alert("No hay ningún articulo en el carrito");
+        return;
+      }
+
       const orderData = {
         CustomerId: payload.CustomerId,
         BranchStoreId: 1,
@@ -40,19 +70,25 @@ const ShoppingCart: React.FC = () => {
           Array.from({ length: item.quantity }, () => item.Id)
         ),
       };
-      axios
-        .post("http://localhost:5285/api/Cart", orderData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      // console.log(orderData);
+
+      if (cart === null) {
+        axios
+          .post("http://localhost:5285/api/Cart", orderData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          })
+          .then((response) => {
+            updateCart(response.data.CartResponse.Data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+
+      onOpen();
     } else {
       console.error("Inicia sesion porfavor");
     }
@@ -86,7 +122,8 @@ const ShoppingCart: React.FC = () => {
             <h2 className="text-2xl font-bold mb-4 text-center">
               Carrito de Compras
             </h2>
-            {Object.keys(cartFood).length === 0 ? (
+            {Object.keys(cartFood).length === 0 &&
+            Object.keys(cartDrinks).length === 0 ? (
               <p className="italic text-gray-600">El carrito está vacío</p>
             ) : (
               <div>
@@ -196,7 +233,39 @@ const ShoppingCart: React.FC = () => {
           </section>
         </article>
       </div>
+      <ModalPayment
+        isOpen={isOpen}
+        handlerOnClose={onClose}
+        handlerOnOpenChange={onOpenChange}
+      />
     </article>
+  );
+};
+
+const ModalPayment = ({
+  isOpen = false,
+  handlerOnOpenChange,
+  handlerOnClose,
+}: {
+  isOpen: boolean;
+  handlerOnOpenChange: () => void;
+  handlerOnClose: () => void;
+}) => {
+  return (
+    <Modal isOpen={isOpen} onOpenChange={handlerOnOpenChange}>
+      <ModalContent className="p-4">
+        {(onClose) => (
+          <>
+            <ModalHeader>Tarjeta</ModalHeader>
+            <ModalBody>
+              <Elements stripe={stripePromise}>
+                <CheckoutForm handlerOnClose={handlerOnClose} />
+              </Elements>
+            </ModalBody>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
   );
 };
 
