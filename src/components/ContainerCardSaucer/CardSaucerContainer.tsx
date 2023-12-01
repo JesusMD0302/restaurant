@@ -38,20 +38,25 @@ export default function CardSaucerContainer() {
 
     fetchData();
   }, []);
+
   const handleCardClick = (card: Card) => {
     addToCart({
       ...card,
-      imageUrl: "https://www.conasi.eu/blog/wp-content/uploads/2014/07/zumo-de-sand%C3%ADa-1.jpg",
-      
-    })
+      imageUrl:
+        "https://www.conasi.eu/blog/wp-content/uploads/2014/07/zumo-de-sand%C3%ADa-1.jpg",
+      quantity: 0,
+      Type: "", // Add the missing 'Type' property here
+    });
     setSelectedCard(card);
-    setProductId(card.Id); // establece el ID del producto aquí
-    setIsOpen(true); // Abre el modal
+    setProductId(card.Id); // Set the ID of the product here
+    setIsOpen(true); // Open the modal
   };
+
   const handleModalClose = () => {
     setSelectedCard(null);
-    setIsOpen(false); // Cierra el modal
+    setIsOpen(false); // Close the modal
   };
+
   return (
     <>
       <div className="flex flex-col ">
@@ -60,11 +65,10 @@ export default function CardSaucerContainer() {
           {data &&
             data.Data.map((card, index) => (
               <CardSaucer
-                key={index}
+                quantity={0} Type={""} key={index}
                 {...card}
                 imageUrl="https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6"
-                onClick={() => handleCardClick(card)}
-              />
+                onClick={() => handleCardClick(card)}              />
             ))}
         </div>
       </div>
@@ -73,7 +77,7 @@ export default function CardSaucerContainer() {
           isOpen={isOpen}
           onClose={handleModalClose}
           selectedCard={selectedCard}
-          productId={productId} 
+          productId={productId}
         />
       )}
     </>

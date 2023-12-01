@@ -20,7 +20,7 @@ export default function Search() {
       );
     }
   }, []);
-  const { cartItems } = useCart();
+  const { cartFood } = useCart();
   return (
     <div className="pt-4 w-full  ">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center">
@@ -62,9 +62,9 @@ export default function Search() {
             <Link href={"/cart"}>
               <div className="relative">
                 <BsCart3 className="text-xl cursor-pointer" title="Carrito" />
-                {Object.keys(cartItems).length > 0 && (
+                {Object.keys(cartFood).length > 0 && (
                   <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">
-                    {Object.values(cartItems).length}
+                    {Object.values(cartFood).length}
                   </span>
                 )}
               </div>

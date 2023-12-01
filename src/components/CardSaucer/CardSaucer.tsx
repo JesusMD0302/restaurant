@@ -12,7 +12,7 @@ import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
     Status: string;
     quantity: number; // Assuming you have a quantity property
     Type: string;
-    onClick?: () => void;
+    onClick?: any;
   
   
 
@@ -27,6 +27,8 @@ const CardSaucer: React.FC<CardSaucerProps> = ({
   Description,
   Status,
   onClick,
+  Type,
+  quantity,
  
   /*  setCartModalOpen */
 }) => {

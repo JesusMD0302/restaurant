@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import CardSaucer from "@/components/CardSaucer/CardSaucer";
+import CardSaucer, { CardSaucerProps } from "@/components/CardSaucer/CardSaucer";
 import { useDisclosure } from "@nextui-org/react";
 import { useCart } from "../CartContext/CartContext";
 
-interface Card {
+interface Card extends CardSaucerProps {
   imageUrl: string;
-  Price: number;
-  Id: number;
-  Name: string;
   Description: string;
-  Status: string;
 }
 
 interface Data {
@@ -19,7 +15,7 @@ interface Data {
 
 export default function ContainerCardDrinks() {
   const { isOpen, onOpen } = useDisclosure();
-  const { addToCart } = useCart();
+  const { addDrinkToCart } = useCart();
   const [data, setData] = React.useState<Data | null>(null);
 
   useEffect(() => {
@@ -36,10 +32,8 @@ export default function ContainerCardDrinks() {
   }, []);
 
   const handleCardClick = (card: Card) => {
-    addToCart({
+    addDrinkToCart({
       ...card,
-      
-      
     });
     onOpen();
   };
@@ -60,7 +54,6 @@ export default function ContainerCardDrinks() {
             ))}
         </div>
       </div>
-      
     </>
   );
 }
