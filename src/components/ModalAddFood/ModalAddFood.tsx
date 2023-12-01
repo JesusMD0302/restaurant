@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { FaBeer } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import { FaBeer } from "react-icons/fa";
 import {
   Modal,
   ModalContent,
@@ -13,27 +13,58 @@ import {
   Input,
   Link,
 } from "@nextui-org/react";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import { Card, CardBody } from "@nextui-org/react";
 import axios from "axios";
 import { BsPlus } from "react-icons/bs";
-
+interface Category {
+  Id: number;
+  Name: string;
+  Description: string;
+  ProductType: number;
+  ProductTypeName: string;
+  Status: string;
+}
 const ModalAddFood = () => {
-  const { isOpen, onOpen, onOpenChange,onClose  } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5285/api/Category?ProductType=1&IsDeleted=false"
+        );
+        setCategories(response.data.Data);
+        console.log("API Response:", response.data.Data);
+      } catch (error) {
+        console.error(`Error al hacer la solicitud: ${error}`);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const handleSubmit = async () => {
+    if (selectedCategoryId === null) {
+      console.error('Por favor, selecciona una categoría antes de enviar.');
+      return;
+    }
+  
     const token = localStorage.getItem("token");
     const data = {
       Name: name,
       Description: description,
       Price: price,
-      CategoryIds: [1],
+      CategoryIds: [selectedCategoryId],
     };
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -51,24 +82,36 @@ const ModalAddFood = () => {
       setName("");
       setDescription("");
       setPrice(0);
-     
     } catch (error) {
       setOpen2(true);
       setName("");
       setDescription("");
       setPrice(0);
-      console.error('Hay que iniciar sesion burro!!');
-      console.log(error)
+      console.log(data);
+      console.error("Hay que iniciar sesion burro!!");
+    }
+  };
+  /*  const handleAutocompleteChange = (value: Category | null) => {
+    setSelectedCategory(value);
+    console.log("Selected Category State:", value);
+  }; */
+  const handleSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedCategory = categories.find(category => category.Name === event.target.value);
+    if (selectedCategory) {
+      setSelectedCategoryId(selectedCategory.Id);
+      console.log('ID de la categoría seleccionada:', selectedCategory.Id);
     }
   };
 
+  
+  
   return (
     <>
       <Card
         onPress={onOpen}
         shadow="sm"
         isPressable
-        className="h-[325px] w-[225px] border-dotted border-2 bg-transparent shadow-none border-[#EA7C69] mx-4"
+        className=" border-dotted border-2 bg-transparent shadow-none border-[#EA7C69] "
       >
         <CardBody className="flex items-center h-full justify-center overflow-visible p-0 ">
           <BsPlus className="text-[#EA7C69] text-3xl" />
@@ -130,7 +173,6 @@ const ModalAddFood = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
                 <Input
-                 
                   label="Descripción"
                   placeholder="Escribe la Descripción"
                   type="text"
@@ -139,9 +181,9 @@ const ModalAddFood = () => {
                   variant="bordered"
                 />
                 <Input
-                 startContent={
-                  <BsCurrencyDollar   className=" text-default-400 pointer-events-none flex-shrink-0 " />
-                }
+                  startContent={
+                    <BsCurrencyDollar className=" text-default-400 pointer-events-none flex-shrink-0 " />
+                  }
                   label="Precio"
                   placeholder="Escribe el Precio"
                   type="number"
@@ -149,18 +191,21 @@ const ModalAddFood = () => {
                   value={price.toString()}
                   onChange={(e) => setPrice(Number(e.target.value))}
                 />
-                {/*  <div className="flex py-2 px-1 justify-between">
-                  <Checkbox
-                    classNames={{
-                      label: "text-small",
-                    }}
-                  >
-                    Remember me
-                  </Checkbox>
-                  <Link color="primary" href="#" size="sm">
-                    Forgot password?
-                  </Link>
-                </div> */}
+
+                <Autocomplete
+                  variant="bordered"
+                  isRequired
+                  label="Categorías"
+                  defaultItems={categories}
+                  placeholder="Busca una categoría"
+                  onSelect={handleSelection}
+                >
+                  {(item) => (
+                    <AutocompleteItem key={item.Id}>
+                      {item.Name}
+                    </AutocompleteItem>
+                  )}
+                </Autocomplete>
               </ModalBody>
               <ModalFooter>
                 <Button color="default" onPress={onClose}>

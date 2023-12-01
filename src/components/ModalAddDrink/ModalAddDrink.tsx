@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { FaBeer } from 'react-icons/fa';
+import { FaBeer } from "react-icons/fa";
 import {
   Modal,
   ModalContent,
@@ -21,7 +21,7 @@ import axios from "axios";
 import { BsPlus } from "react-icons/bs";
 
 const ModalAddDrink = () => {
-  const { isOpen, onOpen, onOpenChange,onClose  } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -51,13 +51,12 @@ const ModalAddDrink = () => {
       setName("");
       setDescription("");
       setPrice(0);
-     
     } catch (error) {
       setOpen2(true);
       setName("");
       setDescription("");
       setPrice(0);
-      console.error('Hay que iniciar sesion burro!!');
+      console.error("Hay que iniciar sesion burro!!");
     }
   };
 
@@ -67,11 +66,13 @@ const ModalAddDrink = () => {
         onPress={onOpen}
         shadow="sm"
         isPressable
-        className="h-[325px] w-[225px] border-dotted border-2 bg-transparent shadow-none border-[#EA7C69] mx-4"
+        className="border-dotted border-2 bg-transparent shadow-none border-[#EA7C69]"
       >
         <CardBody className="flex items-center h-full justify-center overflow-visible p-0 ">
           <BsPlus className="text-[#EA7C69] text-3xl" />
-          <span className="font-medium text-[#EA7C69] mt-2">Añadir Bebidas</span>
+          <span className="font-medium text-[#EA7C69] mt-2">
+            Añadir Bebidas
+          </span>
         </CardBody>
       </Card>
       <Snackbar
@@ -129,7 +130,6 @@ const ModalAddDrink = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
                 <Input
-                 
                   label="Descripción"
                   placeholder="Escribe la Descripción"
                   type="text"
@@ -138,9 +138,9 @@ const ModalAddDrink = () => {
                   variant="bordered"
                 />
                 <Input
-                 startContent={
-                  <BsCurrencyDollar   className=" text-default-400 pointer-events-none flex-shrink-0 " />
-                }
+                  startContent={
+                    <BsCurrencyDollar className=" text-default-400 pointer-events-none flex-shrink-0 " />
+                  }
                   label="Precio"
                   placeholder="Escribe el Precio"
                   type="number"

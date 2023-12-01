@@ -80,14 +80,14 @@ const CardUpdateSaucer: React.FC<CardSaucerProps> = ({
       <CardFooter className="p-0 w-full ">
         <div className="w-full flex">
           <Button
-            className="w-3/4 rounded-s-none font-semibold rounded-e-none text-base text-[#EA7C69] bg-[#ea7c693d]"
+            className="w-3/4 rounded-s-none font-semibold rounded-e-none text-base text-blue-400 bg-[#69d7ea3d]"
             variant="flat"
             color="default"
             radius="lg"
             size="lg"
             onClick={handleEditClick}
           >
-            <LuPencilLine />
+            <LuPencilLine className="text-3xl" />
             Editar Comida
           </Button>
           <div className="w-1/4 bg-[#fa151550] p-2">

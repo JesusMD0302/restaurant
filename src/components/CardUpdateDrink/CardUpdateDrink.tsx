@@ -1,10 +1,11 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import { Card, CardFooter, Image, Button, CardBody } from "@nextui-org/react";
 import { LuPencilLine, LuTrash } from "react-icons/lu";
 import ModalUpdateDrink from "../ModalUpdateDrink/ModalUpdateDrink";
 import axios from "axios";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import { DeleteDocumentIcon } from "@/app/DeleteDocumentIcon";
 export interface CardSaucerProps {
   imageUrl: string;
   Price: number;
@@ -18,7 +19,6 @@ export interface CardSaucerProps {
 }
 
 const CardUpdateDrink: React.FC<CardSaucerProps> = ({
-  
   imageUrl,
   Price,
   Id,
@@ -26,11 +26,11 @@ const CardUpdateDrink: React.FC<CardSaucerProps> = ({
   Description,
   Status,
   onClick,
-  onEdit, 
+  onEdit,
   /*  setCartModalOpen */
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false); 
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const handleEditClick = () => {
     setIsModalOpen(true);
   };
@@ -61,7 +61,6 @@ const CardUpdateDrink: React.FC<CardSaucerProps> = ({
   };
 
   return (
-
     <Card isFooterBlurred radius="lg" className="border-none bg-transparent">
       <CardBody>
         <Image
@@ -71,38 +70,49 @@ const CardUpdateDrink: React.FC<CardSaucerProps> = ({
           src="https://www.conasi.eu/blog/wp-content/uploads/2014/07/zumo-de-sand%C3%ADa-1.jpg"
           width={200}
         />
-         <h4 className="font-bold text-large text-center"> {Name}</h4>
-          <h4 className="font-bold text-large text-green-500 text-center">$ {Price}</h4>
-          <h4 className="font-bold text-large text-[#949494] text-center">{Description}</h4>
+        <h4 className="font-bold text-large text-center"> {Name}</h4>
+        <h4 className="font-bold text-large text-green-500 text-center">
+          $ {Price}
+        </h4>
+        <h4 className="font-bold text-large text-[#949494] text-center">
+          {Description}
+        </h4>
       </CardBody>
       <CardFooter className="p-0 w-full ">
         <div className="w-full flex">
           <Button
-            className="w-3/4 rounded-s-none font-semibold rounded-e-none text-base text-[#EA7C69] bg-[#ea7c693d]"
+            className="w-3/4 rounded-s-none font-semibold rounded-e-none text-base text-blue-400 bg-[#69d7ea3d]"
             variant="flat"
             color="default"
             radius="lg"
             size="lg"
             onClick={handleEditClick}
           >
-            <LuPencilLine />
-            Editar Bebida
+             <LuPencilLine />
+            Editar
           </Button>
-          <div className="w-1/4 bg-[#fa151550] p-2">
-            <LuTrash
+          <div className="w-1/4 p-2 text-danger bg-[#fa151550]" >
+            <DeleteDocumentIcon
               className="text-2xl cursor-pointer m-auto my-1 text-white"
               onClick={handleDeleteClick}
+              key="delete" color="danger"
             />
           </div>
         </div>
       </CardFooter>
-      {isModalOpen && <ModalUpdateDrink isOpen={isModalOpen} onClose={handleCloseModal} productId={Id}   />}
+      {isModalOpen && (
+        <ModalUpdateDrink
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          productId={Id}
+        />
+      )}
       {isConfirmModalOpen && (
         <ConfirmModal
-        isOpen={isConfirmModalOpen}
-        onConfirm={handleConfirmDelete}
-        onCancel={handleCancelDelete}
-        productId={Id}
+          isOpen={isConfirmModalOpen}
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+          productId={Id}
         />
       )}
     </Card>
