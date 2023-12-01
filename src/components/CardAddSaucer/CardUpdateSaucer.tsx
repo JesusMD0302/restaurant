@@ -74,7 +74,7 @@ const CardUpdateSaucer: React.FC<CardSaucerProps> = ({
           $ {Price}
         </h4>
         <h4 className="font-bold text-large text-[#949494] text-center">
-          {Description} {Id}
+          {Description}
         </h4>
       </CardBody>
       <CardFooter className="p-0 w-full ">
